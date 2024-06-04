@@ -11,7 +11,7 @@
 # *************************************************************
 """ASGI extension that provides Single-Page Application Frameworks built into templates"""
 
-__version__ = "0.1.0"
+__version__ = "0.0.1"
 
 from .core import Rizzler
 
