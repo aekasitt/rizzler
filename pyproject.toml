@@ -1,0 +1,70 @@
+[build-system]
+build-backend = 'poetry.core.masonry.api'
+requires = ['poetry-core>=1.0.0']
+
+
+[tool.poetry]
+authors = [
+  'Sitt Guruvanich <aekazitt+github@gmail.com>',
+]
+classifiers = [
+  'Framework :: AsyncIO',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12',
+  'Programming Language :: Python :: 3 :: Only',
+]
+description = 'Rizzler creates a parallel front-end dev-server using ViteJS for ASGI Frameworks'
+homepage = 'https://github.com/aekasitt/rizzler'
+keywords = [
+  'asgi',
+  'blacksheep',
+  'fastapi',
+  'hmr',
+  'javascript',
+  'litestar',
+  'node',
+  'npm',
+  'pnpm',
+  'quart',
+  'sanic',
+  'starlette',
+  'uvicorn',
+  'vite',
+]
+license = 'MIT'
+name = 'rizzler'
+packages = [
+  {from='src', include='rizzler'}
+]
+readme = 'README.md'
+repository = 'https://github.com/aekasitt/rizzler'
+version = '0.1.0'
+
+
+[tool.poetry.dependencies]
+pydantic = '^2.6.2'
+python = '^3.8'
+
+
+[tool.poetry.group.dev]
+optional = true
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = '^1.8.0'
+ruff = '^0.4.7'
+
+
+[tool.ruff]
+indent-width = 2
+line-length = 100
+target-version = 'py38'
+
+
+[tool.ruff.lint.per-file-ignores]
+'__init__.py' = ['F401']  # Ignore empty imports
