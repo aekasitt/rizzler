@@ -15,4 +15,4 @@ __version__ = "0.0.1"
 
 from .core import Rizzler
 
-__all__ = ["Rizzler"]
+__all__ = ("Rizzler",)
