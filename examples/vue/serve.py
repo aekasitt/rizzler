@@ -38,7 +38,7 @@ async def index(request: Request) -> HTMLResponse:
   return templates.TemplateResponse("index.html", {"request": request, "title": "Vue Rizz"})
 
 
-app.mount("/assets", StaticFiles(directory="public"), name="public")
+app.mount("/public", StaticFiles(directory="public"), name="public")
 
 if __name__ == "__main__":
   from uvicorn import run
