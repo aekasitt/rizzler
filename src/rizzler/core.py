@@ -45,10 +45,14 @@ class Rizzler(RizzlerConfig):
       f"{ command } dev", stdout=PIPE, stderr=PIPE, restore_signals=True
     )
     ensure_future(
-      gather(cls._process.wait(), log_stdout(logger, cls._process.stdout), log_stderr(logger, cls._process.stderr))
+      gather(
+        cls._process.wait(),
+        log_stdout(logger, cls._process.stdout),
+        log_stderr(logger, cls._process.stderr),
+      )
     )
     return cls._process
-  
+
   @classmethod
   def shutdown(cls) -> None:
     logger: Logger = getLogger(cls._logger_name)
