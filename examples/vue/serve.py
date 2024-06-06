@@ -1,0 +1,46 @@
+#!/usr/bin/env python3.10
+# coding:utf-8
+# Copyright (C) 2024 All rights reserved.
+# FILENAME:    ~~/examples/vue/serve.py
+# VERSION:     0.1.0
+# CREATED:     2024-06-07 01:39
+# AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
+# DESCRIPTION:
+#
+# HISTORY:
+# *************************************************************
+
+### Standard packages ###
+from asyncio.futures import Future
+from contextlib import asynccontextmanager
+from typing import AsyncIterator
+
+### Third-party packages ###
+from fastapi import FastAPI
+from fastapi.requests import Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from rizzler import RizzleTemplates, Rizzler
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+  rizzler: Future = await Rizzler.dev_server()
+  yield
+
+
+app: FastAPI = FastAPI(lifespan=lifespan)
+templates: RizzleTemplates = RizzleTemplates(directory="templates")
+
+
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request) -> HTMLResponse:
+  return templates.TemplateResponse("index.html", {"request": request, "title": "Vue Rizz"})
+
+
+app.mount("/assets", StaticFiles(directory="public"), name="public")
+
+if __name__ == "__main__":
+  from uvicorn import run
+
+  run(app)
