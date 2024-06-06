@@ -40,6 +40,7 @@ class Rizzler(RizzlerConfig):
   async def dev_server(cls) -> Process:
     command: str = f"{cls._command} run " if cls._command != "yarn" else f"{cls._command} "
     logger: Logger = getLogger(cls._logger_name)
+    logger.info("⚡Starting Rizzler…")
     cls._process = await create_subprocess_shell(
       f"{ command } dev", stdout=PIPE, stderr=PIPE, restore_signals=True
     )
@@ -53,7 +54,7 @@ class Rizzler(RizzlerConfig):
     logger: Logger = getLogger(cls._logger_name)
     if cls._process:
       try:
-        logger.info("Gracefully shutting down Rizzler")
+        logger.info("⚡Gracefully shutting down Rizzler")
         cls._process.terminate()
       except ProcessLookupError:
         ...
