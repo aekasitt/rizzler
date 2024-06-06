@@ -27,47 +27,56 @@ Integrate with `lifespan` protocol.
 ```python
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from rizzler import Rizzler
+from fastapi.requests impor Request
+from fastapi.responses import HTMLResponse
+from rizzler import RizzleTemplates, Rizzler
 from typing import AsyncIterator, List, Tuple
 
 @Rizzler.load_config
-def rizzler_settings() -> List[Tuple[str, ...]]:
+def rizzler_settings() -> List[Tuple[str, str]]:
   return [
     ("command", "pnpm"),
     ("framework", "vue")
   ]
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncIterator[None, None]:
-  Rizzler.initiate()
+async def lifespan(_: FastAPI) -> AsyncIterator[None, None]:
+  await Rizzler.initiate()
   yield
   Rizzler.terminate()
 
 app: FastAPI = FastAPI(lifespan=lifespan)
-```
+templates: RizzleTemplates = RizzleTemplates(directory="templates")
 
-```javascript
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-
-export default defineConfig({
-  clearScreen: false,
-  plugins: [ vue() ],
-  build: {
-    target: "esnext",
-    outDir: "./dist",
-    emptyOutDir: true,
-    assetsDir: "",
-    manifest: true,
-    rollupOptions: {
-      input:  "./assets/javascript/main.tsx"
-    },
-  },
-  root: ".",
-})
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request) -> HTMLResponse:
+  return templates.TemplateResponse("index.html", {"request": request})
 ```
 
 ### Templating
+
+`RizzleTemplates` is an extension on top of `Jinja2Templates` class found under [starlette](starlette.io)
+However, has two overriding methods that must be placed inside the template HTML-file as such:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head><!-- ... --></head>
+  <body>
+    {{ vite_hmr_client() }}
+    {{ vite_asset('pages/main.js') }}
+  </body>
+</html>
+```
+
+## Build
+
+This section talks about how to use `Jinja2Templates` in place of `RizzleTemplates` for built assets
+from the `vite build` command inside `package.json`.
+
+To be determined.
+
+## Contributions
 
 To be determined.
 
