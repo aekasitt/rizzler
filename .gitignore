@@ -16,6 +16,9 @@ dist
 # Mypy
 .mypy_cache
 
+# Node
+node_modules
+
 # Pyenv
 .python-version
 fleet.toml
