@@ -5,7 +5,7 @@
 # VERSION:     0.1.0
 # CREATED:     2024-06-05 01:43
 # AUTHOR: 	   Sitt Guruvanich <aekazitt+github@gmail.com>
-# DESCRIPTION:
+# DESCRIPTION: https://www.w3docs.com/snippets/python/what-is-init-py-for.html
 #
 # HISTORY:
 # *************************************************************
@@ -13,6 +13,7 @@
 
 __version__ = "0.1.0"
 
-from .core import Rizzler
+from rizzler.core import Rizzler
+from rizzler.templating import RizzleTemplates
 
-__all__ = ("Rizzler",)
+__all__ = ("RizzleTemplates", "Rizzler")

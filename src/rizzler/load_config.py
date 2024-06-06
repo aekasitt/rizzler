@@ -15,14 +15,15 @@
 from typing import Optional
 
 ### Third-party packages ###
-from pydantic import BaseModel, validator, StrictStr
+from pydantic import BaseModel, StrictStr, field_validator
 
 
 class LoadConfig(BaseModel):
   command: Optional[StrictStr] = None
   framework: Optional[StrictStr] = None
+  logger_name: Optional[StrictStr] = None
 
-  @validator("command")
+  @field_validator("command")
   def validate_command(cls, value: str) -> str:
     if value.lower() not in {"bun", "deno", "npm", "pnpm", "yarn"}:
       raise ValueError(
@@ -30,12 +31,18 @@ class LoadConfig(BaseModel):
       )
     return value.lower()
 
-  @validator("framework")
-  def validate_framework(cls, value: int) -> int:
+  @field_validator("framework")
+  def validate_framework(cls, value: str) -> str:
     if value.lower() not in {"angular", "react", "svelte", "vue"}:
       raise ValueError(
         'The "framework" value must be one of "angular", "react", "svelte", or "vue".'
       )
+    return value
+
+  @field_validator("logger_name")
+  def validate_logger_name(cls, value: str) -> str:
+    if value.lower() not in {"gunicorn", "uvicorn"}:
+      raise ValueError('The "logger_name" value must be one of "gunicorn", or "uvicorn".')
     return value
 
 

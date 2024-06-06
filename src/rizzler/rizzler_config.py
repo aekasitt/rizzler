@@ -24,6 +24,7 @@ from rizzler.load_config import LoadConfig
 class RizzlerConfig(object):
   _command: str = "pnpm"
   _framework: str = "vue"
+  _logger_name: str = "uvicorn"
 
   @classmethod
   def load_config(cls, settings: Callable[..., List[Tuple]]) -> None:
@@ -37,6 +38,7 @@ class RizzlerConfig(object):
       config = LoadConfig(**{key.lower(): value for key, value in settings()})
       cls._command = config.command or cls._command
       cls._framework = config.framework or cls._framework
+      cls._logger_name = config.logger_name or cls._logger_name
     except ValidationError:
       raise
     except Exception:

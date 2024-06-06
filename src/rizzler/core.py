@@ -9,13 +9,42 @@
 #
 # HISTORY:
 # *************************************************************
-"""Module containing Core implementation for Rizzler extension for FastAPI"""
+"""Module containing Core implementation for Rizzler extension for ASGI Frameworks"""
+
+### Standard packages ###
+from asyncio import create_subprocess_shell, ensure_future, gather
+from asyncio.futures import Future
+from asyncio.streams import StreamReader
+from asyncio.subprocess import PIPE, Process
+from logging import Logger, getLogger
 
 ### Local modules ###
 from rizzler.rizzler_config import RizzlerConfig
 
 
-class Rizzler(RizzlerConfig): ...
+async def log_stderr(logger: Logger, stream: None | StreamReader) -> None:
+  if stream is not None:
+    while chunk := await stream.readline():
+      logger.error(f"{chunk.decode('utf-8').strip()}")
+
+
+async def log_stdout(logger: Logger, stream: None | StreamReader) -> None:
+  if stream is not None:
+    while chunk := await stream.readline():
+      logger.info(f"{chunk.decode('utf-8').strip()}")
+
+
+class Rizzler(RizzlerConfig):
+  @classmethod
+  async def dev_server(cls) -> Future:
+    command: str = f"{cls._command} run " if cls._command != "yarn" else f"{cls._command} "
+    logger: Logger = getLogger(cls._logger_name)
+    process: Process = await create_subprocess_shell(
+      f"{ command } dev", stdout=PIPE, stderr=PIPE, restore_signals=True
+    )
+    return ensure_future(
+      gather(process.wait(), log_stdout(logger, process.stdout), log_stderr(logger, process.stderr))
+    )
 
 
 __all__ = ("Rizzler",)
