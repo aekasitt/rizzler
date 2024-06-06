@@ -25,7 +25,7 @@ from uvicorn import run
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-  await Rizzler.dev_server()
+  await Rizzler.initiate()
   yield
   Rizzler.shutdown()
 

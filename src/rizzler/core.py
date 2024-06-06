@@ -37,10 +37,10 @@ class Rizzler(RizzlerConfig):
   _process: None | Process = None
 
   @classmethod
-  async def dev_server(cls) -> Process:
+  async def initiate(cls) -> Process:
     command: str = f"{cls._command} run " if cls._command != "yarn" else f"{cls._command} "
     logger: Logger = getLogger(cls._logger_name)
-    logger.info("⚡Starting Rizzler…")
+    logger.info("Initiating Rizzler…")
     cls._process = await create_subprocess_shell(
       f"{ command } dev", stdout=PIPE, stderr=PIPE, restore_signals=True
     )
