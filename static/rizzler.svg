@@ -9,6 +9,27 @@
   xmlns:xlink='http://www.w3.org/1999/xlink'
   >
   <defs>
+    <path id='apple-shape'
+      d="
+        M24,20
+        c-0.1-0.1-0.2-0.2-0.3-0.2
+        c-0.1-0.1-0.2-0.1-0.3-0.2
+        c0,0,0,0,0,0
+        v0
+        c-3.6-2-5.8,1.2-5.2,4.4
+        c0.6,3,3.3,5.8,5.2,4.8
+        v0
+        c0,0,0,0,0,0
+        c0.1,0,0.1-0.1,0.2-0.1
+        c0,0,0,0,0,0
+        c0,0,0.1-0.1,0.1-0.1
+        c0,0,0,0,0.1-0.1
+        c0,0,0.1-0.1,0.1-0.1
+        c0.1-0.1,0.1-0.1,0.2-0.2
+        c1.9,2.2,5.3-0.9,5.9-4.3
+        C30.5,20.6,28,17.3,24,20z
+      "
+      />
     <pattern id='backdrop'
       height='100%'
       patternContentUnits='userSpaceOnUse'
@@ -26,6 +47,14 @@
         >
       </image>
     </pattern>
+    <radialGradient id="dark-radial-gradient" r="75%" cx="20%" cy="20%">
+      <stop offset="0%" stop-color="hsl(265, 100%, 81%)" stop-opacity="0"></stop>
+      <stop offset="100%" stop-color="#946fcb" stop-opacity="1"></stop>
+    </radialGradient>
+    <radialGradient id="light-radial-gradient" r="25%" cx="30%" cy="30%">
+      <stop offset="0%" stop-color="#facfff" stop-opacity="0.75"></stop>
+      <stop offset="100%" stop-color="hsl(265, 100%, 81%)" stop-opacity="0"></stop>
+    </radialGradient>
   </defs>
   <rect
     fill='url(#backdrop)'
@@ -160,7 +189,7 @@
         fill="#473378"
         />
     </g>
-    <g id='apple'
+    <g id='apple-stem'
       transform='translate(0, 2)'>
       <path
         d="
@@ -179,28 +208,11 @@
         "
         fill="#8BC34A"
         />
-      <path
-        d="
-          M24,20
-          c-0.1-0.1-0.2-0.2-0.3-0.2
-          c-0.1-0.1-0.2-0.1-0.3-0.2
-          c0,0,0,0,0,0
-          v0
-          c-3.6-2-5.8,1.2-5.2,4.4
-          c0.6,3,3.3,5.8,5.2,4.8
-          v0
-          c0,0,0,0,0,0
-          c0.1,0,0.1-0.1,0.2-0.1
-          c0,0,0,0,0,0
-          c0,0,0.1-0.1,0.1-0.1
-          c0,0,0,0,0.1-0.1
-          c0,0,0.1-0.1,0.1-0.1
-          c0.1-0.1,0.1-0.1,0.2-0.2
-          c1.9,2.2,5.3-0.9,5.9-4.3
-          C30.5,20.6,28,17.3,24,20z
-        "
-        fill="#A174CF"
-        />
+    </g>
+    <g id='apple-fruit'>
+      <use xlink:href='#apple-shape' fill="#A174CF" />
+      <use xlink:href='#apple-shape' fill='url(#dark-radial-gradient)' />
+      <use xlink:href='#apple-shape' fill='url(#light-radial-gradient)' />
     </g>
   </g>
 </svg>
