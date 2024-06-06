@@ -11,7 +11,7 @@
 # *************************************************************
 
 ### Standard packages ###
-from asyncio.futures import Future
+from asyncio.subprocess import Process
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 
@@ -21,12 +21,14 @@ from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from rizzler import RizzleTemplates, Rizzler
+from uvicorn import run
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-  rizzler: Future = await Rizzler.dev_server()
+  rizzler: Process = await Rizzler.dev_server()
   yield
+  Rizzler.shutdown()
 
 
 app: FastAPI = FastAPI(lifespan=lifespan)
@@ -41,6 +43,7 @@ async def index(request: Request) -> HTMLResponse:
 app.mount("/public", StaticFiles(directory="public"), name="public")
 
 if __name__ == "__main__":
-  from uvicorn import run
-
-  run(app)
+  try:
+    run(app)
+  except KeyboardInterrupt:
+    ...

@@ -13,7 +13,6 @@
 
 ### Standard packages ###
 from asyncio import create_subprocess_shell, ensure_future, gather
-from asyncio.futures import Future
 from asyncio.streams import StreamReader
 from asyncio.subprocess import PIPE, Process
 from logging import Logger, getLogger
@@ -35,16 +34,29 @@ async def log_stdout(logger: Logger, stream: None | StreamReader) -> None:
 
 
 class Rizzler(RizzlerConfig):
+  _process: None | Process = None
+
   @classmethod
-  async def dev_server(cls) -> Future:
+  async def dev_server(cls) -> Process:
     command: str = f"{cls._command} run " if cls._command != "yarn" else f"{cls._command} "
     logger: Logger = getLogger(cls._logger_name)
-    process: Process = await create_subprocess_shell(
+    cls._process = await create_subprocess_shell(
       f"{ command } dev", stdout=PIPE, stderr=PIPE, restore_signals=True
     )
-    return ensure_future(
-      gather(process.wait(), log_stdout(logger, process.stdout), log_stderr(logger, process.stderr))
+    ensure_future(
+      gather(cls._process.wait(), log_stdout(logger, cls._process.stdout), log_stderr(logger, cls._process.stderr))
     )
+    return cls._process
+  
+  @classmethod
+  def shutdown(cls) -> None:
+    logger: Logger = getLogger(cls._logger_name)
+    if cls._process:
+      try:
+        logger.info("Gracefully shutting down Rizzler")
+        cls._process.terminate()
+      except ProcessLookupError:
+        ...
 
 
 __all__ = ("Rizzler",)
