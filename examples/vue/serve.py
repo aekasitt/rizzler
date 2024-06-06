@@ -11,7 +11,6 @@
 # *************************************************************
 
 ### Standard packages ###
-from asyncio.subprocess import Process
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
 
@@ -26,7 +25,7 @@ from uvicorn import run
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-  rizzler: Process = await Rizzler.dev_server()
+  await Rizzler.dev_server()
   yield
   Rizzler.shutdown()
 
