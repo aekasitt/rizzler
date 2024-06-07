@@ -9,7 +9,7 @@
 [![Languages](https://img.shields.io/github/languages/count/aekasitt/rizzler)](.)
 [![Repository size](https://img.shields.io/github/repo-size/aekasitt/rizzler)](.)
 [![Last commit](https://img.shields.io/github/last-commit/aekasitt/rizzler/master)](.)
-[![Rizzler Banner](./static/rizzler-banner.svg)](./static/rizzler-banner.svg)
+[![Rizzler Banner](./static/rizzler-banner.svg)](https://github.com/aekasitt/rizzler/blob/master/static/rizzler-banner.svg)
 
 ## Installation
 
