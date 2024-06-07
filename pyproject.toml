@@ -8,15 +8,22 @@ authors = [
   'Sitt Guruvanich <aekazitt+github@gmail.com>',
 ]
 classifiers = [
+  'Development Status :: 3 - Alpha',
+  'Environment :: Web Environment',
   'Framework :: AsyncIO',
   'Intended Audience :: Developers',
   'License :: OSI Approved :: MIT License',
+  'Programming Language :: Python',
   'Programming Language :: Python :: 3.8',
   'Programming Language :: Python :: 3.9',
   'Programming Language :: Python :: 3.10',
   'Programming Language :: Python :: 3.11',
   'Programming Language :: Python :: 3.12',
   'Programming Language :: Python :: 3 :: Only',
+  'Operating System :: OS Independent',
+  'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+  'Topic :: Text Processing :: Markup :: HTML',
+  'Typing :: Typed',
 ]
 description = 'Rizzler creates a parallel front-end dev-server using ViteJS for ASGI Frameworks'
 homepage = 'https://github.com/aekasitt/rizzler'
