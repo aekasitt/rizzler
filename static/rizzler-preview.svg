@@ -128,29 +128,28 @@
   </rect>
   <text
     font-family='Ingrid Darling'
-    font-size='180px'
+    font-size='256px'
     text-anchor='left'
     x='500px'
-    y='280px'>
+    y='320px'>
     Rizzler
   </text>
   <text
     font-family='Arial'
     font-size='32px'
-    x='500px'
-    y='400px'
+    y='360px'
     >
-    Rizzler creates a parallel front-end dev-server
+    <tspan
+      dy='2.4rem'
+      x='500px'>
+      Create a parallel front-end dev-server using ViteJS
+    </tspan>
+    <tspan
+      dy='2.4rem'
+      x='500px'>
+      for ASGI Webframeworks like FastAPI and Starlette
+    </tspan>
   </text>
-  <text
-    font-family='Arial'
-    font-size='32px'
-    x='500px'
-    y='440px'
-    >
-    using ViteJS for ASGI Frameworks
-  </text>
-  
   <rect
     fill="#3572A5"
     filter='url(#dropShadowLite)'
