@@ -17,6 +17,9 @@ from typing import List
 from markupsafe import Markup
 from starlette.templating import Jinja2Templates
 
+### Local modules ###
+from rizzler import Rizzler
+
 
 class RizzleTemplates(Jinja2Templates):
   def __init__(self, directory: str) -> None:
@@ -44,6 +47,18 @@ class RizzleTemplates(Jinja2Templates):
       <script type="module" src="http://localhost:5173/@vite/client"></script>
       """
     )
+    if Rizzler._framework == "react":
+      tags.append(
+        """
+        <script type="module">
+          import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+          RefreshRuntime.injectIntoGlobalHook(window)
+          window.$RefreshReg$ = () => {{}}
+          window.$RefreshSig$ = () => (type) => type
+          window.__vite_plugin_react_preamble_installed__=true
+        </script>
+        """
+      )
     return Markup("\n".join(tags))
 
 
