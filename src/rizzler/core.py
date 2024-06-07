@@ -54,7 +54,7 @@ class Rizzler(RizzlerConfig):
     return cls._process
 
   @classmethod
-  def shutdown(cls) -> None:
+  def terminate(cls) -> None:
     logger: Logger = getLogger(cls._logger_name)
     if cls._process:
       try:

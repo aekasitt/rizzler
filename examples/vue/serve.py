@@ -27,7 +27,7 @@ from uvicorn import run
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
   await Rizzler.initiate()
   yield
-  Rizzler.shutdown()
+  Rizzler.terminate()
 
 
 app: FastAPI = FastAPI(lifespan=lifespan)
