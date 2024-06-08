@@ -22,8 +22,8 @@ def rzl() -> None:
   """Command line entry point for `rzl`"""
 
 
-rzl.add_command(build)
-rzl.add_command(initiate)
+rzl.add_command(build, "build")
+rzl.add_command(initiate, "init")
 
 
 __all__ = ("rzl",)
