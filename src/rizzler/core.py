@@ -52,10 +52,23 @@ class Rizzler(RizzlerConfig):
     )
 
   @classmethod
-  async def initiate(cls) -> Process:
-    command: str = f"{ cls._command } run" if cls._command != "yarn" else "yarn"
+  async def initiate(cls) -> Tuple[int, None, None]:
     logger: Logger = getLogger(cls._logger_name)
     logger.info("Initiating Rizzler…")
+    cls._process = await create_subprocess_shell(
+      f"{ cls._command } init", stdout=PIPE, stderr=PIPE, restore_signals=True
+    )
+    return await gather(
+      cls._process.wait(),
+      log_stdout(logger, cls._process.stdout),
+      log_stderr(logger, cls._process.stderr),
+    )
+
+  @classmethod
+  async def serve(cls) -> Process:
+    command: str = f"{ cls._command } run" if cls._command != "yarn" else "yarn"
+    logger: Logger = getLogger(cls._logger_name)
+    logger.info("Serving Rizzler dev-server…")
     cls._process = await create_subprocess_shell(
       f"{ command } dev", stdout=PIPE, stderr=PIPE, restore_signals=True
     )
