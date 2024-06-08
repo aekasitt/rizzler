@@ -12,7 +12,7 @@
 
 ### Standard packages ###
 from asyncio import run
-from logging import Formatter, INFO, Logger, getLogger
+from logging import Formatter, Logger, getLogger
 from typing import Dict, List, Tuple
 
 ### Third-party packages ###
@@ -60,7 +60,7 @@ def build(bun: bool, deno: bool, npm: bool, pnpm: bool, yarn: bool) -> None:
     return [("command", command), ("logger_name", "rizzler_cli")]
 
   logger: Logger = getLogger("rizzler_cli")
-  logger.setLevel(INFO)
+  logger.setLevel("INFO")
   handler: RichHandler = RichHandler()
   handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))
   logger.addHandler(handler)
