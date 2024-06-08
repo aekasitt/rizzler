@@ -13,7 +13,21 @@
 
 __version__ = "0.1.3"
 
+### Third-party packages ###
+from click import group
+
+### Local modules ###
 from rizzler.core import Rizzler
+from rizzler.commands import build, initiate
 from rizzler.templating import RizzleTemplates
 
-__all__ = ("RizzleTemplates", "Rizzler")
+
+@group
+def cli() -> None:
+  """rzl"""
+
+
+cli.add_command(build, "build")
+cli.add_command(initiate, "init")
+
+__all__ = ("RizzleTemplates", "Rizzler", "cli")

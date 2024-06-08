@@ -89,7 +89,7 @@ uvicorn = '^0.30.1'
 
 
 [tool.poetry.scripts]
-rzl = 'rizzler.cli:rzl'
+rzl = 'rizzler:cli'
 
 
 [tool.ruff]
