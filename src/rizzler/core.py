@@ -16,6 +16,7 @@ from asyncio import create_subprocess_shell, ensure_future, gather
 from asyncio.streams import StreamReader
 from asyncio.subprocess import PIPE, Process
 from logging import Logger, getLogger
+from typing import Tuple
 
 ### Local modules ###
 from rizzler.rizzler_config import RizzlerConfig
@@ -37,8 +38,22 @@ class Rizzler(RizzlerConfig):
   _process: None | Process = None
 
   @classmethod
+  async def build(cls) -> Tuple[int, None, None]:
+    command: str = f"{ cls._command } run" if cls._command != "yarn" else "yarn"
+    logger: Logger = getLogger(cls._logger_name)
+    logger.info("Building Rizzler front-end…")
+    cls._process = await create_subprocess_shell(
+      f"{ command } build", stdout=PIPE, stderr=PIPE, restore_signals=True
+    )
+    return await gather(
+      cls._process.wait(),
+      log_stdout(logger, cls._process.stdout),
+      log_stderr(logger, cls._process.stderr),
+    )
+
+  @classmethod
   async def initiate(cls) -> Process:
-    command: str = f"{cls._command} run " if cls._command != "yarn" else f"{cls._command} "
+    command: str = f"{ cls._command } run" if cls._command != "yarn" else "yarn"
     logger: Logger = getLogger(cls._logger_name)
     logger.info("Initiating Rizzler…")
     cls._process = await create_subprocess_shell(

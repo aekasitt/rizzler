@@ -11,11 +11,13 @@
 # *************************************************************
 
 ### Standard packages ###
+from asyncio import run
+from logging import Formatter, Logger, getLogger
 from typing import Dict, List, Tuple
 
 ### Third-party packages ###
 from click import command, option
-from rich import print
+from rich.logging import RichHandler
 
 ### Local modules ###
 from rizzler.core import Rizzler
@@ -62,7 +64,6 @@ def rzl(
   yarn: bool,
 ) -> None:
   """Command line entry point for `rzl`"""
-
   command_selector: Dict[str, bool] = {
     "bun": bun,
     "deno": deno,
@@ -75,6 +76,7 @@ def rzl(
     command = next(filter(lambda value: value[1], command_selector.items()))[0]
   except StopIteration:
     command = "pnpm"
+
   framework_selector: Dict[str, bool] = {
     "angular": angular,
     "react": react,
@@ -88,10 +90,15 @@ def rzl(
     framework = "vue"
 
   @Rizzler.load_config
-  def rizzler_settings() -> List[Tuple[str, str]]:
-    return [("command", command), ("framework", framework)]
+  def rizzler_settings() -> List[Tuple[str, str]]:  # type: ignore[]
+    return [("command", command), ("framework", framework), ("logger_name", "rizzler_cli")]
 
-  print(Rizzler._command, Rizzler._framework)
+  logger: Logger = getLogger("rizzler_cli")
+  logger.setLevel("INFO")
+  handler: RichHandler = RichHandler()
+  handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))
+  logger.addHandler(handler)
+  run(Rizzler.build())
 
 
 __all__ = ("rzl",)
