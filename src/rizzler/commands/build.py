@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024, All rights reserved.
 # FILENAME:    ~~/src/rizzler/commands/build.py
-# VERSION:     0.1.3
+# VERSION:     0.1.4
 # CREATED:     2024-06-09 02:39
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:

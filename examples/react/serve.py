@@ -1,8 +1,8 @@
 #!/usr/bin/env python3.8
 # coding:utf-8
-# Copyright (C) 2024 All rights reserved.
+# Copyright (C) 2024, All rights reserved.
 # FILENAME:    ~~/examples/react/serve.py
-# VERSION:     0.1.3
+# VERSION:     0.1.4
 # CREATED:     2024-06-07 16:07
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:

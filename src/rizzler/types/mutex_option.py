@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024, All rights reserved.
 # FILENAME:    ~~/src/rizzler/types/mutex_option.py
-# VERSION:     0.1.3
+# VERSION:     0.1.4
 # CREATED:     2024-06-08 19:00
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:

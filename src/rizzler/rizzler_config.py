@@ -2,8 +2,8 @@
 # coding:utf-8
 # Copyright (C) 2024, All rights reserved.
 # FILENAME:    ~~/src/rizzler/rizzler_config.py
-# VERSION:     0.1.3
-# CREATED: 	   2024-06-05 01:43
+# VERSION:     0.1.4
+# CREATED:     2024-06-05 01:43
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:
 #
