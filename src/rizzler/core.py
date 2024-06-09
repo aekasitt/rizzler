@@ -41,7 +41,7 @@ class Rizzler(RizzlerConfig):
   async def build(cls) -> Tuple[int, None, None]:
     command: str = f"{ cls._command } run" if cls._command != "yarn" else "yarn"
     logger: Logger = getLogger(cls._logger_name)
-    logger.info("Building Rizzler front-end…")
+    logger.info("⚡Building Rizzler front-end…")
     cls._process = await create_subprocess_shell(
       f"{ command } build", stdout=PIPE, stderr=PIPE, restore_signals=True
     )
@@ -54,7 +54,7 @@ class Rizzler(RizzlerConfig):
   @classmethod
   async def initiate(cls) -> Tuple[int, None, None]:
     logger: Logger = getLogger(cls._logger_name)
-    logger.info("Initiating Rizzler…")
+    logger.info("⚡Initiating Rizzler…")
     cls._process = await create_subprocess_shell(
       f"{ cls._command } create vite@latest . --template { cls._framework }",
       stdout=PIPE,
@@ -71,7 +71,7 @@ class Rizzler(RizzlerConfig):
   async def serve(cls) -> Process:
     command: str = f"{ cls._command } run" if cls._command != "yarn" else "yarn"
     logger: Logger = getLogger(cls._logger_name)
-    logger.info("Serving Rizzler dev-server…")
+    logger.info("⚡Serving Rizzler dev-server…")
     cls._process = await create_subprocess_shell(
       f"{ command } dev", stdout=PIPE, stderr=PIPE, restore_signals=True
     )
@@ -85,7 +85,7 @@ class Rizzler(RizzlerConfig):
     return cls._process
 
   @classmethod
-  def terminate(cls) -> None:
+  def shutdown(cls) -> None:
     logger: Logger = getLogger(cls._logger_name)
     if cls._process:
       try:

@@ -41,9 +41,9 @@ def rizzler_settings() -> List[Tuple[str, str]]:
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None, None]:
-  await Rizzler.initiate()
+  await Rizzler.serve()
   yield
-  Rizzler.terminate()
+  Rizzler.shutdown()
 
 app: FastAPI = FastAPI(lifespan=lifespan)
 templates: RizzleTemplates = RizzleTemplates(directory="templates")
