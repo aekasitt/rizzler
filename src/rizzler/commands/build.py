@@ -57,9 +57,9 @@ def build(bun: bool, deno: bool, npm: bool, pnpm: bool, yarn: bool) -> None:
 
   @Rizzler.load_config
   def rizzler_settings() -> List[Tuple[str, str]]:  # type: ignore
-    return [("command", command), ("logger_name", "rizzler_cli")]
+    return [("command", command), ("logger_name", "rzl")]
 
-  logger: Logger = getLogger("rizzler_cli")
+  logger: Logger = getLogger("rzl")
   logger.setLevel("INFO")
   handler: RichHandler = RichHandler()
   handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))

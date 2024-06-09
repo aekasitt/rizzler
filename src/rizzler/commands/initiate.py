@@ -91,9 +91,9 @@ def initiate(
 
   @Rizzler.load_config
   def rizzler_settings() -> List[Tuple[str, str]]:  # type: ignore
-    return [("command", command), ("framework", framework), ("logger_name", "rizzler_cli")]
+    return [("command", command), ("framework", framework), ("logger_name", "rzl")]
 
-  logger: Logger = getLogger("rizzler_cli")
+  logger: Logger = getLogger("rzl")
   logger.setLevel("INFO")
   handler: RichHandler = RichHandler()
   handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))

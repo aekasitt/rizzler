@@ -18,7 +18,7 @@ from click import group
 
 ### Local modules ###
 from rizzler.core import Rizzler
-from rizzler.commands import build, initiate
+from rizzler.commands import build, clean, initiate
 from rizzler.templating import RizzleTemplates
 
 
@@ -28,6 +28,7 @@ def cli() -> None:
 
 
 cli.add_command(build, "build")
+cli.add_command(clean, "clean")
 cli.add_command(initiate, "initiate")
 
 __all__ = ("RizzleTemplates", "Rizzler", "cli")

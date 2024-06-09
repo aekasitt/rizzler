@@ -12,6 +12,7 @@
 
 ### Local modules ###
 from rizzler.commands.build import build
+from rizzler.commands.clean import clean
 from rizzler.commands.initiate import initiate
 
-__all__ = ("build", "initiate")
+__all__ = ("build", "clean", "initiate")
