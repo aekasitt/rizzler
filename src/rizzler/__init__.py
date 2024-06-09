@@ -28,6 +28,6 @@ def cli() -> None:
 
 
 cli.add_command(build, "build")
-cli.add_command(initiate, "init")
+cli.add_command(initiate, "initiate")
 
 __all__ = ("RizzleTemplates", "Rizzler", "cli")
