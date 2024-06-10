@@ -56,7 +56,7 @@ class Rizzler(RizzlerConfig):
     logger: Logger = getLogger(cls._logger_name)
     logger.info("⚡Initiating Rizzler…")
     cls._process = await create_subprocess_shell(
-      f"{ cls._command } create vite@latest . --template { cls._framework }",
+      f"{ cls._command } create vite@latest rzl-tmp --template { cls._framework }",
       stdout=PIPE,
       stderr=PIPE,
       restore_signals=True,

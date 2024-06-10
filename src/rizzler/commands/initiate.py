@@ -13,6 +13,9 @@
 ### Standard packages ###
 from asyncio import run
 from logging import Formatter, Logger, getLogger
+from os import path, mkdir, remove
+from shutil import move, rmtree
+from re import sub
 from typing import Dict, List, Tuple
 
 ### Third-party packages ###
@@ -98,7 +101,50 @@ def initiate(
   handler: RichHandler = RichHandler()
   handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))
   logger.addHandler(handler)
+  if not path.exists("rzl-tmp"):
+    mkdir("rzl-tmp")
   run(Rizzler.initiate())
+  if path.exists("package.json"):
+    remove("package.json")
+  move("rzl-tmp/package.json", "package.json")
+  if path.exists("vite.config.js"):
+    remove("vite.config.js")
+  move("rzl-tmp/vite.config.js", "vite.config.js")
+  if path.exists("pages"):
+    rmtree("pages")
+  move("rzl-tmp/src", "pages")
+  rmtree("rzl-tmp")
+  if path.exists("templates"):
+    rmtree("templates")
+  mkdir("templates")
+  with open("templates/index.html", "wb") as html_file:
+    html_file.write(
+      sub(
+        r"\n\s{8}",
+        "\n",
+        """<!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta httprime-equiv='X-UA-Compatible' content='IE=edge' />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>
+              Unspoken Rizz
+            </title>
+            <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+          </head>
+          <body>
+            <noscript>
+              This page requires JavaScript to work.
+            </noscript>
+            <div id="app"></div>
+            {{ vite_hmr_client() }}
+            {{ vite_asset('pages/main.js') }}
+          </body>
+        </html>
+        """,
+      ).encode("utf-8")
+    )
 
 
 __all__ = ("initiate",)
