@@ -113,14 +113,17 @@ def initiate(
   if path.exists("pages"):
     rmtree("pages")
   move("rzl-tmp/src", "pages")
+  if path.exists("public"):
+    rmtree("public")
+  move("rzl-tmp/public", "public")
   rmtree("rzl-tmp")
   if path.exists("templates"):
     rmtree("templates")
   mkdir("templates")
-  with open("templates/index.html", "wb") as html_file:
-    html_file.write(
+  with open("templates/index.html", "wb") as index_html:
+    index_html.write(
       sub(
-        r"\n\s{8}",
+        r"\n {8}",
         "\n",
         """<!DOCTYPE html>
         <html lang="en">
@@ -137,12 +140,54 @@ def initiate(
             <noscript>
               This page requires JavaScript to work.
             </noscript>
-            <div id="app"></div>
-            {{ vite_hmr_client() }}
-            {{ vite_asset('pages/main.js') }}
+            <div id="{app_id}"></div>
+            {{{{ vite_hmr_client() }}}}
+            {{{{ vite_asset('{entry}') }}}}
           </body>
         </html>
         """,
+      )
+      .format(
+        app_id="app" if framework != "react" else "root",
+        entry="pages/main.js" if framework != "react" else "pages/main.jsx",
+      )
+      .encode("utf-8")
+    )
+  if path.exists("serve.py"):
+    remove("serve.py")
+  with open("serve.py", "wb") as serve_py:
+    serve_py.write(
+      sub(
+        r"\n {8}",
+        "\n",
+        """#!/usr/bin/env python3
+        from contextlib import asynccontextmanager
+        from fastapi import FastAPI
+        from fastapi.requests import Request
+        from fastapi.responses import HTMLResponse
+        from fastapi.staticfiles import StaticFiles
+        from rizzler import Rizzler, RizzleTemplates
+        from typing import List, Tuple
+
+        templates = RizzleTemplates(directory="templates")
+
+        @Rizzler.load_config
+        def rizzler_settings() -> List[Tuple[str, str]]:
+          return [("framework", "react")]
+
+        @asynccontextmanager
+        async def lifespan(_: FastAPI):
+          await Rizzler.serve()
+          yield
+          Rizzler.shutdown()
+
+        app = FastAPI(lifespan=lifespan)
+
+        @app.get("/", response_class=HTMLResponse)
+        def index(request: Request) -> HTMLResponse:
+          return templates.TemplateResponse("index.html", {"request": request})
+        app.mount("/", StaticFiles(directory="public"), name="public")
+       """,
       ).encode("utf-8")
     )
 
