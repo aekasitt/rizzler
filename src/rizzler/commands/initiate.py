@@ -15,7 +15,6 @@ from asyncio import run
 from logging import Formatter, Logger, getLogger
 from os import path, mkdir, remove
 from shutil import move, rmtree
-from re import sub
 from typing import Dict, List, Tuple
 
 ### Third-party packages ###
@@ -23,6 +22,7 @@ from click import command, option
 from rich.logging import RichHandler
 
 ### Local modules ###
+from rizzler.configs import SCRIPT, TEMPLATES
 from rizzler.core import Rizzler
 from rizzler.types import MutexOption
 
@@ -101,6 +101,7 @@ def initiate(
   handler: RichHandler = RichHandler()
   handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))
   logger.addHandler(handler)
+
   if not path.exists("rzl-tmp"):
     mkdir("rzl-tmp")
   run(Rizzler.initiate())
@@ -121,75 +122,11 @@ def initiate(
     rmtree("templates")
   mkdir("templates")
   with open("templates/index.html", "wb") as index_html:
-    index_html.write(
-      sub(
-        r"\n {8}",
-        "\n",
-        """<!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta httprime-equiv='X-UA-Compatible' content='IE=edge' />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>
-              Unspoken Rizz
-            </title>
-            <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon'>
-          </head>
-          <body>
-            <noscript>
-              This page requires JavaScript to work.
-            </noscript>
-            <div id="{app_id}"></div>
-            {{{{ vite_hmr_client() }}}}
-            {{{{ vite_asset('{entry}') }}}}
-          </body>
-        </html>
-        """,
-      )
-      .format(
-        app_id="app" if framework != "react" else "root",
-        entry="pages/main.js" if framework != "react" else "pages/main.jsx",
-      )
-      .encode("utf-8")
-    )
+    index_html.write("\n".join(TEMPLATES[framework]).replace("\\", "").encode("utf-8"))  # type: ignore
   if path.exists("serve.py"):
     remove("serve.py")
   with open("serve.py", "wb") as serve_py:
-    serve_py.write(
-      sub(
-        r"\n {8}",
-        "\n",
-        """#!/usr/bin/env python3
-        from contextlib import asynccontextmanager
-        from fastapi import FastAPI
-        from fastapi.requests import Request
-        from fastapi.responses import HTMLResponse
-        from fastapi.staticfiles import StaticFiles
-        from rizzler import Rizzler, RizzleTemplates
-        from typing import List, Tuple
-
-        templates = RizzleTemplates(directory="templates")
-
-        @Rizzler.load_config
-        def rizzler_settings() -> List[Tuple[str, str]]:
-          return [("framework", "react")]
-
-        @asynccontextmanager
-        async def lifespan(_: FastAPI):
-          await Rizzler.serve()
-          yield
-          Rizzler.shutdown()
-
-        app = FastAPI(lifespan=lifespan)
-
-        @app.get("/", response_class=HTMLResponse)
-        def index(request: Request) -> HTMLResponse:
-          return templates.TemplateResponse("index.html", {"request": request})
-        app.mount("/", StaticFiles(directory="public"), name="public")
-       """,
-      ).encode("utf-8")
-    )
+    serve_py.write("\n".join(SCRIPT).replace("$", "").encode("utf-8"))  # type: ignore
 
 
 __all__ = ("initiate",)
