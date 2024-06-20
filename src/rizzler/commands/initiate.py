@@ -26,6 +26,15 @@ from rizzler.configs import SCRIPT, TEMPLATES
 from rizzler.core import Rizzler
 from rizzler.types import MutexOption
 
+def remove_if_exists(target: str) -> bool:
+  removed: bool = False
+  if path.exists(target):
+    if path.isdir(target):
+      rmtree(target)
+    else:
+      remove(target)
+    removed = True
+  return removed
 
 @command
 @option(
@@ -105,28 +114,30 @@ def initiate(
   if not path.exists("rzl-tmp"):
     mkdir("rzl-tmp")
   run(Rizzler.initiate())
-  if path.exists("package.json"):
-    remove("package.json")
+  removed: bool = remove_if_exists("package.json")
   move("rzl-tmp/package.json", "package.json")
-  if path.exists("vite.config.js"):
-    remove("vite.config.js")
+  logger.info(f"'./package.json' file has been {'rewritten' if removed else 'written'}.")
+  removed = remove_if_exists("vite.config.js")
   move("rzl-tmp/vite.config.js", "vite.config.js")
-  if path.exists("pages"):
-    rmtree("pages")
+  logger.info(f"'./vite.config.js' file has been {'rewritten' if removed else 'written'}.")
+  removed = remove_if_exists("pages")
   move("rzl-tmp/src", "pages")
-  if path.exists("public"):
-    rmtree("public")
+  logger.info(f"'./pages' directory has been {'recreated' if removed else 'created'}.")
+  removed = remove_if_exists("public")
   move("rzl-tmp/public", "public")
+  logger.info(f"'./public' directory has been {'recreated' if removed else 'created'}.")
   rmtree("rzl-tmp")
-  if path.exists("templates"):
-    rmtree("templates")
+  logger.info("Temporary directory 'rzl-tmp' has been removed.")
+  removed = remove_if_exists("templates")
   mkdir("templates")
   with open("templates/index.html", "wb") as index_html:
-    index_html.write("\n".join(TEMPLATES[framework]).replace("\\", "").encode("utf-8"))  # type: ignore
-  if path.exists("serve.py"):
-    remove("serve.py")
+    index_html.write("\n".join(TEMPLATES[framework]).encode("utf-8"))  # type: ignore
+  logger.info(f"'./templates' directory has been {'recreated' if removed else 'created'}.")
+  logger.info(f"'./templates/index.html' has been {'rewritten' if removed else 'written'}.")
+  removed = remove_if_exists("serve.py")
   with open("serve.py", "wb") as serve_py:
-    serve_py.write("\n".join(SCRIPT).replace("$", "").encode("utf-8"))  # type: ignore
+    serve_py.write("\n".join(SCRIPT).encode("utf-8"))  # type: ignore
+  logger.info(f"'./serve.py' file has been {'recreated' if removed else 'created'}.")
 
 
 __all__ = ("initiate",)
