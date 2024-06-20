@@ -11,7 +11,7 @@
 # *************************************************************
 
 ### Standard packages ###
-from typing import Any, List, Mapping, Tuple, override
+from typing import Any, List, Mapping, Tuple
 
 ### Third-party packages ###
 from click import Context, Option, UsageError
@@ -26,8 +26,7 @@ class MutexOption(Option):
     ).strip()
     super(MutexOption, self).__init__(*args, **kwargs)
 
-  @override
-  def handle_parse_result(
+  def handle_parse_result(  # type: ignore[override]
     self, ctx: Context, opts: Mapping[str, Any], args: List[str]
   ) -> Tuple[Any, List[str]]:
     current_opt: bool = self.name in opts
