@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024, All rights reserved.
 # FILENAME:    ~~/src/rizzler/templating/rizzle_template.py
-# VERSION:     0.1.6
+# VERSION:     0.1.7
 # CREATED:     2024-06-07 01:39
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:
