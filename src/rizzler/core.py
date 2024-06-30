@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024, All rights reserved.
 # FILENAME:    ~~/src/rizzler/core.py
-# VERSION:     0.1.7
+# VERSION:     0.1.6
 # CREATED:     2024-06-05 01:43
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:
@@ -16,19 +16,19 @@ from asyncio import create_subprocess_shell, ensure_future, gather
 from asyncio.streams import StreamReader
 from asyncio.subprocess import PIPE, Process
 from logging import Logger, getLogger
-from typing import Tuple, Optional
+from typing import Tuple
 
 ### Local modules ###
 from rizzler.rizzler_config import RizzlerConfig
 
 
-async def log_stderr(logger: Logger, stream: Optional[StreamReader]) -> None:
+async def log_stderr(logger: Logger, stream: None | StreamReader) -> None:
   if stream is not None:
     while chunk := await stream.readline():
       logger.error(f"{chunk.decode('utf-8').strip()}")
 
 
-async def log_stdout(logger: Logger, stream: Optional[StreamReader]) -> None:
+async def log_stdout(logger: Logger, stream: None | StreamReader) -> None:
   if stream is not None:
     while chunk := await stream.readline():
       logger.info(f"{chunk.decode('utf-8').strip()}")
