@@ -14,17 +14,21 @@
 from asyncio import run
 from logging import Formatter, Logger, getLogger
 from os import path, mkdir, remove
+from re import match, sub
 from shutil import move, rmtree
 from typing import Dict, List, Tuple
 
 ### Third-party packages ###
 from click import command, option
 from rich.logging import RichHandler
+from tree_sitter import Language, Parser
+from tree_sitter_javascript import language
 
 ### Local modules ###
 from rizzler.configs import SCRIPT, TEMPLATES
 from rizzler.core import Rizzler
 from rizzler.types import MutexOption
+
 
 def remove_if_exists(target: str) -> bool:
   removed: bool = False
@@ -35,6 +39,74 @@ def remove_if_exists(target: str) -> bool:
       remove(target)
     removed = True
   return removed
+
+
+def rizzify_vite_config(framework: str) -> bool:
+  javascript: Language = Language(language())
+  parser: Parser = Parser(javascript)
+  content: bytes
+  overwrite: bytes = b""
+  with open("vite.config.js", "rb") as file:
+    content = file.read()
+  tree = parser.parse(content, encoding="utf8")
+  root_node = tree.root_node
+  export_node = next(filter(lambda node: node.type == "export_statement", root_node.children))
+  cursor = export_node.walk()
+  cursor.goto_first_child()
+  while cursor.goto_next_sibling() and cursor.node is not None:
+    if (
+      match(r"^defineConfig", content[cursor.node.start_byte : cursor.node.end_byte].decode("utf8"))
+      is not None
+    ):
+      define_cursor = cursor.node.walk()
+      define_cursor.goto_first_child()
+      while define_cursor.goto_next_sibling() and define_cursor.node is not None:
+        if content[define_cursor.node.start_byte : define_cursor.node.end_byte] != b"defineConfig":
+          config_cursor = define_cursor.node.walk()
+          config_cursor.goto_first_child()
+          while config_cursor.goto_next_sibling() and config_cursor.node is not None:
+            if (
+              match(
+                r"^{",
+                content[config_cursor.node.start_byte : config_cursor.node.end_byte].decode("utf8"),
+              )
+              is not None
+            ):
+              fields_cursor = config_cursor.node.walk()
+              fields_cursor.goto_first_child()
+              while fields_cursor.goto_next_sibling() and fields_cursor.node is not None:
+                if (
+                  match(
+                    r"^,",
+                    content[fields_cursor.node.start_byte : fields_cursor.node.end_byte].decode(
+                      "utf8"
+                    ),
+                  )
+                  is not None
+                ):
+                  entry_extension: str = "jsx" if framework == "react" else "js"
+                  overwrite = content[0 : fields_cursor.node.start_byte + 1]
+                  overwrite += sub(
+                    r"\n\s{18}",
+                    "\n",
+                    """
+                    build: {
+                      rollupOptions: {
+                        input: './pages/main.%s',
+                        output: {
+                          assetFileNames: 'rizz.[ext]',
+                          entryFileNames: 'rizz.js'
+                        },
+                      },
+                    },"""
+                    % entry_extension,
+                  ).encode("utf8")
+                  overwrite += content[fields_cursor.node.end_byte : len(content)]
+  with open("vite.config.js", "wb") as file:
+    file.write(overwrite)
+
+  return True
+
 
 @command
 @option(
@@ -120,6 +192,9 @@ def initiate(
   removed = remove_if_exists("vite.config.js")
   move("rzl-tmp/vite.config.js", "vite.config.js")
   logger.info(f"'./vite.config.js' file has been {'rewritten' if removed else 'written'}.")
+  rizzified = rizzify_vite_config(framework)
+  if rizzified:
+    logger.info("'./vite.config.js' file has been rizzified.")
   removed = remove_if_exists("pages")
   move("rzl-tmp/src", "pages")
   logger.info(f"'./pages' directory has been {'recreated' if removed else 'created'}.")
