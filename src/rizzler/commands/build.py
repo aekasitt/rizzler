@@ -13,7 +13,7 @@
 ### Standard packages ###
 from asyncio import run
 from logging import Formatter, Logger, getLogger
-from re import match
+from re import match, sub
 from typing import Dict, List, Tuple
 
 ### Third-party packages ###
@@ -102,6 +102,16 @@ def build(bun: bool, deno: bool, npm: bool, pnpm: bool, yarn: bool) -> None:
       overwrite += content[cursor.node.start_byte : cursor.node.start_byte + end_index]
       overwrite += b'<script language="javascript" src="./rizz.js" type="module"></script>'
       overwrite += content[cursor.node.start_byte + end_index : cursor.node.end_byte]
+  overwrite = sub(
+    r"\{\{\s*vite_hmr_client\(\)\s*\}\}\n",
+    "",
+    overwrite.decode("utf8")
+  ).encode("utf8")
+  overwrite = sub(
+    r"\{\{\s*vite_asset\((\"|')pages\/main\.js[x]?(\"|')\)\s*\}\}\n",
+    "",
+    overwrite.decode("utf8")
+  ).encode("utf8")
   with open("dist/index.html", "wb") as file:
     file.write(overwrite)
 
