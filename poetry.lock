@@ -850,6 +850,26 @@ docs = ["sphinx (>=7.3,<8.0)", "sphinx-book-theme"]
 tests = ["tree-sitter-html", "tree-sitter-javascript", "tree-sitter-json", "tree-sitter-python", "tree-sitter-rust"]
 
 [[package]]
+name = "tree-sitter-html"
+version = "0.20.3"
+description = "HTML grammar for tree-sitter"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "tree-sitter-html-0.20.3.tar.gz", hash = "sha256:268f38e77399d9ec5ceaa4d85b999c415235c6032b5e19231d6e5810eae80a9d"},
+    {file = "tree_sitter_html-0.20.3-cp38-abi3-macosx_10_9_x86_64.whl", hash = "sha256:25626426adfe3a38badc2c71f38d51e9f66a050a42c480d26f093756f4d58667"},
+    {file = "tree_sitter_html-0.20.3-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:37f1a7d346d93266f86abddd1c68e3c84c2c11f093def21d5bc2dd339a0c25ff"},
+    {file = "tree_sitter_html-0.20.3-cp38-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a234139e4c52ceb3ec6f4ad6340febbfef90a7b73f836490f9599c9788eac86a"},
+    {file = "tree_sitter_html-0.20.3-cp38-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1b6cd641b4a041afdf63f80a6600f866ee61540757f20209363fda725d2da84f"},
+    {file = "tree_sitter_html-0.20.3-cp38-abi3-musllinux_1_1_aarch64.whl", hash = "sha256:255d0d4f046198cf01342c5be75b336e1900ab46377e9a2c11517c915dac0d70"},
+    {file = "tree_sitter_html-0.20.3-cp38-abi3-musllinux_1_1_x86_64.whl", hash = "sha256:1ab1b8d2408030eeed0e26ef929035455cb414069fe47039fd9287776c429f89"},
+    {file = "tree_sitter_html-0.20.3-cp38-abi3-win_amd64.whl", hash = "sha256:6c2565b900a18144395360a81d9c45238367eef0f72bface9c97a949d9749685"},
+]
+
+[package.extras]
+core = ["tree-sitter (>=0.21,<1.0)"]
+
+[[package]]
 name = "tree-sitter-javascript"
 version = "0.21.4"
 description = "Javascript grammar for tree-sitter"
@@ -1236,4 +1256,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "f6d6508931786c17964bc4ff012440aace52a99cec1de27d0260844d86aa019e"
+content-hash = "346c80328bd5132e1ed44611da114bd51300c9d7eb64f459bf7699c54731b75a"
