@@ -71,10 +71,59 @@ However, has two overriding methods that must be placed inside the template HTML
 
 ## Build
 
-This section talks about how to use `Jinja2Templates` in place of `RizzleTemplates` for built assets
-from the `vite build` command inside `package.json`.
+You can run the following command once you are done customizing the front-end code under `pages/` directory
+to your liking.
 
-To be determined.
+```sh
+rzl build
+```
+
+<details>
+  <summary>Example outputs for `rzl build`</summary>
+
+  ```sh
+  $ rzl build
+  > INFO     ⚡Building Rizzler front-end…
+  > INFO
+  > INFO     > rzl-tmp@0.0.0 build /Users/mackasitt/workspaces/rzl-react
+  > INFO     > vite build                                       
+  > INFO                                                       
+  > INFO     vite v5.3.3 building for production...           
+  > INFO     transforming...                                 
+  > INFO     ✓ 32 modules transformed.                      
+  > INFO     rendering chunks...                           
+  > INFO     computing gzip size...                       
+  > INFO     dist/rizz.svg    4.13 kB │ gzip:  2.14 kB   
+  > INFO     dist/rizz.css    1.39 kB │ gzip:  0.72 kB  
+  > INFO     dist/rizz.js   142.63 kB │ gzip: 45.74 kB 
+  > INFO     ✓ built in 390ms
+  ```
+</details>
+
+Now you can stop using `RizzleTemplates` and revert back to serving front-end with `Jinja2Templates`
+as such
+
+```python
+#!/usr/bin/env python3
+from fastapi import FastAPI
+from fastapi.requests import Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
+app = FastAPI()
+templates = Jinja2Templates(directory="dist")
+
+@app.get("/", response_class=HTMLResponse)
+def index(request: Request) -> HTMLResponse:
+  return templates.TemplateResponse("index.html", {"request": request})
+
+app.mount("/", StaticFiles(directory="dist"), name="dist")
+```
+
+Voila! Now you have a production front-end to go with your `FastAPI` application when you need.
+There will probably be bugs when it comes to relative versus absolute paths in the future.
+But this is good enough for many prototyping use-case and with a bit of tinkering, can replace 
 
 ## Contributions
 
