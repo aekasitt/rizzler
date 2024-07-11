@@ -130,17 +130,17 @@ But this is good enough for many prototyping use-case and with a bit of tinkerin
 This library relies on the following Python dependencies.
 
 - **click** - Python composable command line interface toolkit 
-  [![GitHub](https://img.shields.io/badge/-GitHub:%20pallets%2fclick-2B3137?logo=github&logoColor=white)](https://github.com/pallets/click)
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pallets/click)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20click-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
-  [![Docs](https://img.shields.io/badge/-Sphinx:%20click-0A507A?logo=sphinx&logoColor=white)](https://click.palletsprojects.com/en/8.1.x)
+  [![Docs](https://img.shields.io/badge/Sphinx-0A507A?logo=sphinx&logoColor=white)](https://click.palletsprojects.com/en/8.1.x)
 - **jinja2** - A very fast and expressive template engine
-  [![GitHub](https://img.shields.io/badge/-GitHub:%20pallets%2fjinja-2B3137?logo=github&logoColor=white)](https://github.com/pallets/jinja)
-  [![PyPI](https://img.shields.io/badge/-PyPI:%20jinja2-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
-  [![Docs](https://img.shields.io/badge/-Sphinx:%20jinja2-0A507A?logo=sphinx&logoColor=white)](https://jinja.palletsprojects.com/en/3.1.x)
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pallets/jinja)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20jinja2-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/jinja2)
+  [![Docs](https://img.shields.io/badge/Sphinx-0A507A?logo=sphinx&logoColor=white)](https://jinja.palletsprojects.com/en/3.1.x)
 - **markupsafe** - Safely add untrusted strings to HTML/XML markup
-  [![GitHub](https://img.shields.io/badge/-GitHub:%20pallets%2fmarkupsafe-2B3137?logo=github&logoColor=white)](https://github.com/pallets/markupsafe)
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pallets/markupsafe)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20markupsafe-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
-  [![Docs](https://img.shields.io/badge/-Sphinx:%20markupsafe-0A507A?logo=sphinx&logoColor=white)](https://markupsafe.palletsprojects.com/en/2.1.x)
+  [![Docs](https://img.shields.io/badge/Sphinx-0A507A?logo=sphinx&logoColor=white)](https://markupsafe.palletsprojects.com/en/2.1.x)
 
 ## Contributions
 
