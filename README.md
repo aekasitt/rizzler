@@ -149,6 +149,10 @@ This library relies on the following Python dependencies.
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/yaml/pyyaml)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20pyyaml-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/pyyaml)
   [![Docs](https://img.shields.io/badge/user-guide-brightgreen?logo=readthedocs)](https://pyyaml.org)
+- **rich** - Rich text and beautiful formatting in the terminal
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/Textualize/rich)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20rich-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/rich)
+  [![Docs](https://img.shields.io/readthedocs/rich?logo=readthedocs)](https://rich.readthedocs.io/en/latest)
 
 
 ## Contributions
