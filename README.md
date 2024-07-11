@@ -151,7 +151,7 @@ I recommend using `pyenv` and `poetry` as the preferred tools to managing this p
   [![OpenCollective](https://img.shields.io/badge/-OpenCollective:%20pyenv-7FADF2?logo=opencollective&logoColor=white)](https://opencollective.com/pyenv)
 - **poetry** - Python packaging and dependency management made easy 
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/python-poetry/poetry)
-  [![PyPI](https://img.shileds.io/badge/-PyPI:%20poetry-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/poetry)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20poetry-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/poetry)
   [![Poetry](https://img.shields.io/badge/-Poetry-60A5FA?logo=poetry&logoColor=white)](https://python-poetry.org)
 
 ### Setup development environment
@@ -177,8 +177,6 @@ pytest
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/astral-sh/ruff)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20ruff-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/ruff)
   [![Docs](https://img.shields.io/badge/MkDocs-526CFE?logo=materialformkdocs&logoColor=white)](https://docs.astral.sh/ruff) 
-
-To be determined.
 
 ## Acknowledgements
 
