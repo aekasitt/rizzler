@@ -125,7 +125,7 @@ Now you have a production front-end to go with your `FastAPI` application when y
 There will probably be bugs when it comes to relative versus absolute paths in the future.
 But this is good enough for many prototyping use-case and with a bit of tinkering, can replace 
 
-## Disclosures
+## Dependencies and Disclosures
 
 This library relies on the following Python dependencies.
 
@@ -133,10 +133,14 @@ This library relies on the following Python dependencies.
   [![GitHub](https://img.shields.io/badge/-GitHub:%20pallets%2fclick-2B3137?logo=github&logoColor=white)](https://github.com/pallets/click)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20click-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
   [![Docs](https://img.shields.io/badge/-Sphinx:%20click-0A507A?logo=sphinx&logoColor=white)](https://click.palletsprojects.com/en/8.1.x)
-- **jinja2** - A very fast and expressive template engine. 
+- **jinja2** - A very fast and expressive template engine
   [![GitHub](https://img.shields.io/badge/-GitHub:%20pallets%2fjinja-2B3137?logo=github&logoColor=white)](https://github.com/pallets/jinja)
-  [![PyPI](https://img.shields.io/badge/-PyPI:%20click-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20jinja2-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
   [![Docs](https://img.shields.io/badge/-Sphinx:%20jinja2-0A507A?logo=sphinx&logoColor=white)](https://jinja.palletsprojects.com/en/3.1.x)
+- **markupsafe** - Safely add untrusted strings to HTML/XML markup
+  [![GitHub](https://img.shields.io/badge/-GitHub:%20pallets%2fmarkupsafe-2B3137?logo=github&logoColor=white)](https://github.com/pallets/markupsafe)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20markupsafe-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
+  [![Docs](https://img.shields.io/badge/-Sphinx:%20markupsafe-0A507A?logo=sphinx&logoColor=white)](https://markupsafe.palletsprojects.com/en/2.1.x)
 
 ## Contributions
 
