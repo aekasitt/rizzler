@@ -144,7 +144,7 @@ This library relies on the following Python dependencies.
 - **pydantic** - Data validation using Python type hints
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pydantic/pydantic)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20pydantic-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/pydantic)
-  [![Docs](https://img.shields.io/badge/MkDocs-526CFE?logo=materialformkdocs&logoColor=white)](https://docs.pydantic.dev)
+  [![Docs]()](https://docs.pydantic.dev)
 - **PyYAML** - Full-featured YAML framework for the Python
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/yaml/pyyaml)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20pyyaml-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/pyyaml)
@@ -153,6 +153,10 @@ This library relies on the following Python dependencies.
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/Textualize/rich)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20rich-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/rich)
   [![Docs](https://img.shields.io/readthedocs/rich?logo=readthedocs)](https://rich.readthedocs.io/en/latest)
+- **starlette** - Lightweight ASGI framework / toolkit
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/encode/starlette)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20starlette-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/starlette)
+  [![Docs](https://img.shields.io/badge/MkDocs-526CFE?logo=materialformkdocs&logoColor=white)](https://www.starlette.io)
 
 
 ## Contributions
