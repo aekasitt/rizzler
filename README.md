@@ -157,7 +157,16 @@ This library relies on the following Python dependencies.
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/encode/starlette)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20starlette-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/starlette)
   [![Docs](https://img.shields.io/badge/MkDocs-526CFE?logo=materialformkdocs&logoColor=white)](https://www.starlette.io)
-
+- **tree-sitter** - An incremental parsing system for programming tools 
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/tree-sitter/tree-sitter)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20tree-sitter-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter)
+  [![Docs](https://img.shields.io/badge/user-guide-brightgreen?logo=readthedocs)](https://tree-sitter.github.io/tree-sitter)
+  - **tree-sitter-html**
+    [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/tree-sitter/tree-sitter-html)
+    [![PyPI](https://img.shields.io/badge/-PyPI:%20tree-sitter-html-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter-html)
+  - **tree-sitter-javascript**
+    [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/tree-sitter/tree-sitter-javascript)
+    [![PyPI](https://img.shields.io/badge/-PyPI:%20tree-sitter-javascript-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter-javascript)
 
 ## Contributions
 
