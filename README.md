@@ -163,10 +163,10 @@ This library relies on the following Python dependencies.
   [![Docs](https://img.shields.io/badge/user-guide-brightgreen?logo=readthedocs)](https://tree-sitter.github.io/tree-sitter)
   - **tree-sitter-html**
     [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/tree-sitter/tree-sitter-html)
-    [![PyPI](https://img.shields.io/badge/-PyPI:%20tree%2Dsitter%2Dhtml-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter-html)
+    [![PyPI](https://img.shields.io/badge/-PyPI:%20tree--sitter--html-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter-html)
   - **tree-sitter-javascript**
     [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/tree-sitter/tree-sitter-javascript)
-    [![PyPI](https://img.shields.io/badge/-PyPI:%20tree%2Dsitter%2Djavascript-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter-javascript)
+    [![PyPI](https://img.shields.io/badge/-PyPI:%20tree--sitter--javascript-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter-javascript)
 
 ## Contributions
 
