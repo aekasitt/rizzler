@@ -139,8 +139,13 @@ This library relies on the following Python dependencies.
   [![Docs](https://img.shields.io/badge/Sphinx-0A507A?logo=sphinx&logoColor=white)](https://jinja.palletsprojects.com/en/3.1.x)
 - **markupsafe** - Safely add untrusted strings to HTML/XML markup
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pallets/markupsafe)
-  [![PyPI](https://img.shields.io/badge/-PyPI:%20markupsafe-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/click)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20markupsafe-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/markupsafe)
   [![Docs](https://img.shields.io/badge/Sphinx-0A507A?logo=sphinx&logoColor=white)](https://markupsafe.palletsprojects.com/en/2.1.x)
+- **pydantic** - Data validation using Python type hints
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pydantic/pydantic)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20pydantic-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/pydantic)
+  [![Docs](https://img.shields.io/badge/MkDocs-526CFE?logo=materialformkdocs&logoColor=white)](https://docs.pydantic.dev)
+
 
 ## Contributions
 
