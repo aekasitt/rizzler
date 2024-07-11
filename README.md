@@ -85,7 +85,7 @@ rzl build
   $ rzl build
   > INFO     ⚡Building Rizzler front-end…
   > INFO
-  > INFO     > rzl-tmp@0.0.0 build /Users/mackasitt/workspaces/rzl-react
+  > INFO     > rzl-tmp@0.0.0 build /Users/user/workspaces/rzl-react
   > INFO     > vite build                                       
   > INFO                                                       
   > INFO     vite v5.3.3 building for production...           
