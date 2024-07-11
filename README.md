@@ -159,7 +159,7 @@ This library relies on the following Python dependencies.
   [![Docs](https://img.shields.io/badge/MkDocs-526CFE?logo=materialformkdocs&logoColor=white)](https://www.starlette.io)
 - **tree-sitter** - An incremental parsing system for programming tools 
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/tree-sitter/tree-sitter)
-  [![PyPI](https://img.shields.io/badge/-PyPI:%20tree-sitter-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20tree--sitter-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/tree-sitter)
   [![Docs](https://img.shields.io/badge/user-guide-brightgreen?logo=readthedocs)](https://tree-sitter.github.io/tree-sitter)
   - **tree-sitter-html**
     [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/tree-sitter/tree-sitter-html)
