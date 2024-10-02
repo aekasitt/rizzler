@@ -37,6 +37,7 @@ target
 
 # Workspace settings
 .idea
+.ignore
 .vscode
 
 # macOS Finder indexer
