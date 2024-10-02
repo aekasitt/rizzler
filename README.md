@@ -173,16 +173,16 @@ This library relies on the following Python dependencies.
 ### Prerequisites
 
 
-I recommend using `pyenv` and `poetry` as the preferred tools to managing this project.
+I recommend using `pyenv` and `uv` as the preferred tools to managing this project.
 
 - **pyenv**  - Simple Python version management 
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pyenv/pyenv)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20pyenv-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/pyenv)
   [![OpenCollective](https://img.shields.io/badge/-OpenCollective:%20pyenv-7FADF2?logo=opencollective&logoColor=white)](https://opencollective.com/pyenv)
-- **poetry** - Python packaging and dependency management made easy 
-  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/python-poetry/poetry)
-  [![PyPI](https://img.shields.io/badge/-PyPI:%20poetry-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/poetry)
-  [![Poetry](https://img.shields.io/badge/-Poetry-60A5FA?logo=poetry&logoColor=white)](https://python-poetry.org)
+- **uv** - An extremely fast Python package and project manager, written in Rust.
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/astral-sh/uv)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20uv-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/uv)
+  [![Uv](https://img.shields.io/badge/-Astral-261230?logo=astral&logoColor=white)](https://docs.astral.sh/uv)
 
 ### Setup development environment
 
@@ -191,7 +191,7 @@ dependencies including four extra libraries not included in final builds as such
 Alternatively, run the following command on your terminal to do so:
 
 ```bash
-poetry install --with dev
+uv sync --dev
 ```
 
 - **mypy** Optional static typing for Python
