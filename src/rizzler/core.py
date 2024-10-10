@@ -16,26 +16,26 @@ from asyncio import create_subprocess_shell, ensure_future, gather
 from asyncio.streams import StreamReader
 from asyncio.subprocess import PIPE, Process
 from logging import Logger, getLogger
-from typing import Tuple
+from typing import Optional, Tuple
 
 ### Local modules ###
 from rizzler.rizzler_config import RizzlerConfig
 
 
-async def log_stderr(logger: Logger, stream: None | StreamReader) -> None:
+async def log_stderr(logger: Logger, stream: Optional[StreamReader]) -> None:
   if stream is not None:
     while chunk := await stream.readline():
       logger.error(f"{chunk.decode('utf-8').strip()}")
 
 
-async def log_stdout(logger: Logger, stream: None | StreamReader) -> None:
+async def log_stdout(logger: Logger, stream: Optional[StreamReader]) -> None:
   if stream is not None:
     while chunk := await stream.readline():
       logger.info(f"{chunk.decode('utf-8').strip()}")
 
 
 class Rizzler(RizzlerConfig):
-  _process: None | Process = None
+  _process: Optional[Process] = None
 
   @classmethod
   async def build(cls) -> Tuple[int, None, None]:
@@ -56,7 +56,7 @@ class Rizzler(RizzlerConfig):
     logger: Logger = getLogger(cls._logger_name)
     logger.info("⚡Initiating Rizzler…")
     cls._process = await create_subprocess_shell(
-      f"{ cls._command } create vite@latest rzl-tmp --template { cls._framework }",
+      f"{ cls._command } create { cls._framework }@latest rzl-tmp",
       stdout=PIPE,
       stderr=PIPE,
       restore_signals=True,
