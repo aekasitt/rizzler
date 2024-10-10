@@ -206,7 +206,7 @@ def initiate(
   removed = remove_if_exists("templates")
   mkdir("templates")
   with open("templates/index.html", "wb") as index_html:
-    index_html.write("\n".join(TEMPLATES[framework]).encode("utf-8"))  # type: ignore
+    index_html.write("\n".join(TEMPLATES[framework].values()).encode("utf-8"))  # type: ignore
   logger.info(f"'./templates' directory has been {'recreated' if removed else 'created'}.")
   logger.info(f"'./templates/index.html' has been {'rewritten' if removed else 'written'}.")
   removed = remove_if_exists("serve.py")

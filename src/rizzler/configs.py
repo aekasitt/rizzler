@@ -27,12 +27,12 @@ with open(str(file_path).replace("configs.py", "script.yaml"), "rb") as stream:
   if script:
     SCRIPT = TypeAdapter(List[str]).validate_python(script["serve"])
 
-TEMPLATES: Dict[Literal["react", "vue"], List[str]]
+TEMPLATES: Dict[Literal["base", "react", "svelte", "vue"], Dict[int, str]]
 with open(str(file_path).replace("configs.py", "templates.yaml"), "rb") as stream:
   templates: Optional[Dict[str, Any]] = load(stream, Loader=Loader)
   if templates:
-    TEMPLATES = TypeAdapter(Dict[Literal["react", "vue"], List[str]]).validate_python(
-      templates["templates"]
-    )
+    TEMPLATES = TypeAdapter(
+      Dict[Literal["base", "react", "svelte", "vue"], Dict[int, str]]
+    ).validate_python(templates["templates"])
 
 __all__ = ("SCRIPT", "TEMPLATES")
