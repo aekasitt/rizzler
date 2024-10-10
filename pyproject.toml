@@ -67,7 +67,7 @@ version = '0.1.9'
 
 [project.optional-dependencies]
 examples = [
-  'fastapi >=0',
+  'fastapi >=0.114.0,<0.115.0',
   'uvicorn >=0.30.1',
 ]
 
