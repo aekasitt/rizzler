@@ -11,7 +11,7 @@
 # *************************************************************
 """Module containing Core implementation for Rizzler extension for ASGI Frameworks"""
 
-### Standard packages ###
+### Standard library ###
 from asyncio import create_subprocess_shell, ensure_future, gather
 from asyncio.streams import StreamReader
 from asyncio.subprocess import PIPE, Process

@@ -10,7 +10,7 @@
 # HISTORY:
 # *************************************************************
 
-### Standard packages ###
+### Standard library ###
 from pathlib import Path
 from typing import Any, Literal
 
@@ -35,4 +35,4 @@ with open(str(file_path).replace("configs.py", "templates.yaml"), "rb") as strea
             dict[Literal["base", "react", "svelte", "vue"], dict[int, str]]
         ).validate_python(templates["templates"])
 
-__all__ = ("SCRIPT", "TEMPLATES")
+__all__: tuple[str, ...] = ("SCRIPT", "TEMPLATES")

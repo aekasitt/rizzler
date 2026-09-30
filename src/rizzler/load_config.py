@@ -38,9 +38,9 @@ class LoadConfig(BaseModel):
 
     @field_validator("logger_name")
     def validate_logger_name(cls, value: str) -> str:
-        if value.lower() not in {"gunicorn", "rzl", "uvicorn"}:
+        if value.lower() not in {"granian", "gunicorn", "rzl", "uvicorn"}:
             raise ValueError(
-                'The "logger_name" value must be one of "gunicorn", "rzl", or "uvicorn".'
+                'The "logger_name" value must be one of "granian", "gunicorn", "rzl", or "uvicorn".'
             )
         return value
 

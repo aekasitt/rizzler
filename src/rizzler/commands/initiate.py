@@ -10,7 +10,7 @@
 # HISTORY:
 # *************************************************************
 
-### Standard packages ###
+### Standard library ###
 from asyncio import run
 from logging import Formatter, Logger, getLogger
 from os import path, mkdir, remove

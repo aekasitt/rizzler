@@ -172,7 +172,6 @@ This library relies on the following Python dependencies.
 
 ### Prerequisites
 
-
 I recommend using `pyenv` and `uv` as the preferred tools to managing this project.
 
 - **pyenv**  - Simple Python version management 

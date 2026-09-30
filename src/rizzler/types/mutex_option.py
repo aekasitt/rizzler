@@ -10,7 +10,7 @@
 # HISTORY:
 # *************************************************************
 
-### Standard packages ###
+### Standard library ###
 from typing import Any, Mapping
 
 ### Third-party packages ###

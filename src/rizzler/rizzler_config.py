@@ -11,7 +11,7 @@
 # *************************************************************
 """Module containing `RizzlerConfig` class"""
 
-### Standard packages ###
+### Standard library ###
 from typing import Callable
 
 ### Third-party packages ###

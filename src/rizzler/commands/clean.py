@@ -10,7 +10,7 @@
 # HISTORY:
 # *************************************************************
 
-### Standard packages ###
+### Standard library ###
 from logging import Formatter, Logger, getLogger
 from shutil import rmtree
 from os import path, remove
