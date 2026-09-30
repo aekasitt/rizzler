@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024-2026, All rights reserved.
 # FILENAME:    ~~/src/rizzler/configs.py
-# VERSION:     0.1.9
+# VERSION:     0.2.0
 # CREATED:     2024-06-11 19:26 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:

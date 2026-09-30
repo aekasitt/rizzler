@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024-2026, All rights reserved.
 # FILENAME:    ~~/examples/react/serve.py
-# VERSION:     0.1.9
+# VERSION:     0.2.0
 # CREATED:     2024-06-07 16:07 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:

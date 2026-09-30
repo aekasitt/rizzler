@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024-2026, All rights reserved.
 # FILENAME:    ~~/src/rizzler/__init__.py
-# VERSION:     0.1.8
+# VERSION:     0.2.0
 # CREATED:     2024-06-05 01:43 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION: https://www.w3docs.com/snippets/python/what-is-init-py-for.html
@@ -10,8 +10,6 @@
 # HISTORY:
 # *************************************************************
 """ASGI extension that provides Single-Page Application Frameworks built into templates"""
-
-__version__: str = "0.1.8"
 
 ### Third-party packages ###
 from click import group
@@ -31,4 +29,6 @@ cli.add_command(build, "build")
 cli.add_command(clean, "clean")
 cli.add_command(initiate, "initiate")
 
+
 __all__: tuple[str, ...] = ("RizzleTemplates", "Rizzler", "cli")
+__version__: str = "0.2.0"
