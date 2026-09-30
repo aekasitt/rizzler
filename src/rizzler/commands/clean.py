@@ -1,9 +1,9 @@
-#!/usr/bin/env python3.8
+#!/usr/bin/env python3.10
 # coding:utf-8
-# Copyright (C) 2024, All rights reserved.
+# Copyright (C) 2024-2026, All rights reserved.
 # FILENAME:    ~~/src/rizzler/commands/build.py
 # VERSION:     0.1.9
-# CREATED:     2024-06-09 02:39
+# CREATED:     2024-06-09 02:39 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:
 #
@@ -48,4 +48,4 @@ def clean() -> None:
         remove("yarn.lock")
 
 
-__all__ = ("clean",)
+__all__: tuple[str, ...] = ("clean",)
