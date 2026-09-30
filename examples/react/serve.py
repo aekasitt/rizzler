@@ -1,9 +1,9 @@
-#!/usr/bin/env python3.8
+#!/usr/bin/env python3.10
 # coding:utf-8
-# Copyright (C) 2024, All rights reserved.
+# Copyright (C) 2024-2026, All rights reserved.
 # FILENAME:    ~~/examples/react/serve.py
-# VERSION:     0.1.4
-# CREATED:     2024-06-07 16:07
+# VERSION:     0.1.9
+# CREATED:     2024-06-07 16:07 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:
 #
@@ -11,8 +11,8 @@
 # *************************************************************
 
 ### Standard packages ###
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from typing import AsyncIterator, List, Tuple
 
 ### Third-party packages ###
 from fastapi import FastAPI
@@ -24,15 +24,15 @@ from uvicorn import run
 
 
 @Rizzler.load_config
-def rizzler_settings() -> List[Tuple[str, str]]:
-  return [("framework", "react")]
+def rizzler_settings() -> list[tuple[str, str]]:
+    return [("framework", "react")]
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-  await Rizzler.serve()
-  yield
-  Rizzler.shutdown()
+    await Rizzler.serve()
+    yield
+    Rizzler.shutdown()
 
 
 app: FastAPI = FastAPI(lifespan=lifespan)
@@ -41,13 +41,15 @@ templates: RizzleTemplates = RizzleTemplates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request) -> HTMLResponse:
-  return templates.TemplateResponse("index.html", {"request": request, "title": "Unspoken React"})
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "title": "Unspoken React"}
+    )
 
 
 app.mount("/public", StaticFiles(directory="public"), name="public")
 
 if __name__ == "__main__":
-  try:
-    run(app)
-  except KeyboardInterrupt:
-    ...
+    try:
+        run(app)
+    except KeyboardInterrupt:
+        ...

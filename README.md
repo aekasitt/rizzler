@@ -25,32 +25,32 @@ $ pip install rizzler
 Integrate with `lifespan` protocol.
 
 ```python
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.requests impor Request
 from fastapi.responses import HTMLResponse
 from rizzler import RizzleTemplates, Rizzler
-from typing import AsyncIterator, List, Tuple
 
 @Rizzler.load_config
-def rizzler_settings() -> List[Tuple[str, str]]:
-  return [
-    ("command", "pnpm"),
-    ("framework", "vue")
-  ]
+def rizzler_settings() -> list[tuple[str, str]]:
+    return [
+        ("command", "pnpm"),
+        ("framework", "vue")
+    ]
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None, None]:
-  await Rizzler.serve()
-  yield
-  Rizzler.shutdown()
+    await Rizzler.serve()
+    yield
+    Rizzler.shutdown()
 
 app: FastAPI = FastAPI(lifespan=lifespan)
 templates: RizzleTemplates = RizzleTemplates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request) -> HTMLResponse:
-  return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
 ```
 
 ### Templating
@@ -61,11 +61,11 @@ However, has two overriding methods that must be placed inside the template HTML
 ```html
 <!DOCTYPE html>
 <html>
-  <head><!-- ... --></head>
-  <body>
-    {{ vite_hmr_client() }}
-    {{ vite_asset('pages/main.js') }}
-  </body>
+    <head><!-- ... --></head>
+    <body>
+        {{ vite_hmr_client() }}
+        {{ vite_asset('pages/main.js') }}
+    </body>
 </html>
 ```
 
@@ -116,7 +116,7 @@ templates = Jinja2Templates(directory="dist")
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request) -> HTMLResponse:
-  return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
 
 app.mount("/", StaticFiles(directory="dist"), name="dist")
 ```

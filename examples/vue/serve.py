@@ -1,9 +1,9 @@
-#!/usr/bin/env python3.8
+#!/usr/bin/env python3.10
 # coding:utf-8
-# Copyright (C) 2024, All rights reserved.
+# Copyright (C) 2024-2026, All rights reserved.
 # FILENAME:    ~~/examples/vue/serve.py
-# VERSION:     0.1.4
-# CREATED:     2024-06-07 01:39
+# VERSION:     0.1.9
+# CREATED:     2024-06-07 01:39 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION:
 #
@@ -11,8 +11,8 @@
 # *************************************************************
 
 ### Standard packages ###
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from typing import AsyncIterator
 
 ### Third-party packages ###
 from fastapi import FastAPI
@@ -25,9 +25,9 @@ from uvicorn import run
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-  await Rizzler.serve()
-  yield
-  Rizzler.shutdown()
+    await Rizzler.serve()
+    yield
+    Rizzler.shutdown()
 
 
 app: FastAPI = FastAPI(lifespan=lifespan)
@@ -36,13 +36,15 @@ templates: RizzleTemplates = RizzleTemplates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request) -> HTMLResponse:
-  return templates.TemplateResponse("index.html", {"request": request, "title": "Unspoken Vue"})
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "title": "Unspoken Vue"}
+    )
 
 
 app.mount("/public", StaticFiles(directory="public"), name="public")
 
 if __name__ == "__main__":
-  try:
-    run(app)
-  except KeyboardInterrupt:
-    ...
+    try:
+        run(app)
+    except KeyboardInterrupt:
+        ...
