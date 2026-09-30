@@ -3,6 +3,11 @@ build-backend = 'hatchling.build'
 requires = ['hatchling']
 
 
+[dependency-groups]
+dev = ['ruff >=0.4.7', 'types-pyyaml >=6.0.12.20240311']
+examples = ['fastapi >=0.114.0,<0.115.0', 'uvicorn >=0.30.1']
+
+
 [project]
 authors = [{ email = 'aekazitt+github@gmail.com', name = 'Sitt Guruvanich' }]
 classifiers = [
@@ -82,8 +87,3 @@ target-version = 'py310'
 
 [tool.ruff.lint.per-file-ignores]
 '__init__.py' = ['F401'] # Ignore empty imports
-
-
-[dependency-groups]
-dev = ['ruff >=0.4.7', 'types-pyyaml >=6.0.12.20240311']
-examples = ['fastapi >=0.114.0,<0.115.0', 'uvicorn >=0.30.1']
