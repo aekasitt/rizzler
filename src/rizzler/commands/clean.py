@@ -22,30 +22,30 @@ from rich.logging import RichHandler
 
 @command
 def clean() -> None:
-  """Clean up generated files from JavaScript Runtime's package manager"""
-  logger: Logger = getLogger("rzl")
-  logger.setLevel("INFO")
-  handler: RichHandler = RichHandler()
-  handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))
-  logger.addHandler(handler)
-  if path.exists("node_modules"):
-    logger.info(f"D node_modules")
-    rmtree("node_modules")
-  if path.exists("package.json"):
-    logger.info(f"D package.json")
-    remove("package.json")
-  if path.exists("package-lock.json"):
-    logger.info(f"D package-lock.json")
-    remove("package-lock.json")
-  if path.exists("pnpm-lock.yaml"):
-    logger.info(f"D pnpm-lock.yaml")
-    remove("pnpm-lock.yaml")
-  if path.exists("vite.config.js"):
-    logger.info(f"D vite.config.js")
-    remove("vite.config.js")
-  if path.exists("yarn.lock"):
-    logger.info(f"D yarn.lock")
-    remove("yarn.lock")
+    """Clean up generated files from JavaScript Runtime's package manager"""
+    logger: Logger = getLogger("rzl")
+    logger.setLevel("INFO")
+    handler: RichHandler = RichHandler()
+    handler.setFormatter(Formatter("%(message)s", datefmt="[%X]"))
+    logger.addHandler(handler)
+    if path.exists("node_modules"):
+        logger.info("D node_modules")
+        rmtree("node_modules")
+    if path.exists("package.json"):
+        logger.info("D package.json")
+        remove("package.json")
+    if path.exists("package-lock.json"):
+        logger.info("D package-lock.json")
+        remove("package-lock.json")
+    if path.exists("pnpm-lock.yaml"):
+        logger.info("D pnpm-lock.yaml")
+        remove("pnpm-lock.yaml")
+    if path.exists("vite.config.js"):
+        logger.info("D vite.config.js")
+        remove("vite.config.js")
+    if path.exists("yarn.lock"):
+        logger.info("D yarn.lock")
+        remove("yarn.lock")
 
 
 __all__ = ("clean",)
