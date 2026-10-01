@@ -28,7 +28,7 @@ Integrate with `lifespan` protocol.
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from fastapi.requests impor Request
+from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 from rizzler import RizzleTemplates, Rizzler
 
