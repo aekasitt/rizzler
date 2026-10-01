@@ -1,44 +1,45 @@
-# Byte-compiled / optimized / DLL files
+### byte-compiled ###
 __pycache__/
-.pytest_cache/
 *.py[cod]
 
-# C extensions
+
+### c extensions ###
 *.so
 
-# Distribution / packaging
-.venv
+
+### distribution ###
 build
 dist
 *.egg-info
 *.egg
 
-# Mypy
-.mypy_cache
 
-# Node
-node_modules
+### osx ###
+.DS_Store
 
-# Pyenv
-.python-version
-fleet.toml
 
-# Pypi token
+### pypi token ###
 pypi-token.pypi
 
-# Pytest
+
+### pytest ###
 .pytest_cache
 
-# Ruff cache
+
+### ruff ###
 .ruff_cache
 
-# Rust builds
-target
 
-# Workspace settings
+### virtualenv ###
+.venv
+.python-version
+
+
+### workspaces ###
+.crush
+.cursor
+.editorconfig
 .idea
 .ignore
 .vscode
-
-# macOS Finder indexer
-**/.DS_Store
+.zed
