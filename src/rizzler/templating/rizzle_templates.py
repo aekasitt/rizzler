@@ -29,8 +29,8 @@ class RizzleTemplates(Jinja2Templates):
         tags: list[str] = []
         tags.append(
             """
-      <script async defer type="module" src="http://localhost:5173/%s"></script>
-      """
+            <script async defer type="module" src="http://localhost:5173/%s"></script>
+            """
             % path
         )
         return Markup("\n".join(tags))
@@ -41,20 +41,20 @@ class RizzleTemplates(Jinja2Templates):
         tags: list[str] = []
         tags.append(
             """
-      <script type="module" src="http://localhost:5173/@vite/client"></script>
-      """
+            <script type="module" src="http://localhost:5173/@vite/client"></script>
+            """
         )
         if Rizzler._framework == "react":
             tags.append(
                 """
-        <script type="module">
-          import RefreshRuntime from 'http://localhost:5173/@react-refresh'
-          RefreshRuntime.injectIntoGlobalHook(window)
-          window.$RefreshReg$ = () => {{}}
-          window.$RefreshSig$ = () => (type) => type
-          window.__vite_plugin_react_preamble_installed__=true
-        </script>
-        """
+                <script type="module">
+                    import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+                    RefreshRuntime.injectIntoGlobalHook(window)
+                    window.$RefreshReg$ = () => {{}}
+                    window.$RefreshSig$ = () => (type) => type
+                    window.__vite_plugin_react_preamble_installed__=true
+                </script>
+                """
             )
         return Markup("\n".join(tags))
 
