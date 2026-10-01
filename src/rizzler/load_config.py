@@ -11,38 +11,30 @@
 # *************************************************************
 """Module containing `LoadConfig` Pydantic model"""
 
+### Standard library ###
+from typing import Annotated, Literal
+
 ### Third-party packages ###
-from pydantic import BaseModel, StrictStr, field_validator
+from pydantic import BaseModel, BeforeValidator
+
+
+def validate_logger_name(value: str) -> str:
+    if value.lower() not in {"_granian", "granian", "gunicorn", "uvicorn"}:
+        raise ValueError(
+            'The "logger_name" value must be one of "granian", "gunicorn", or "uvicorn".'
+        )
+    if value.lower() == "granian":
+        return "_granian"
+    return value
 
 
 class LoadConfig(BaseModel):
-    command: None | StrictStr = None
-    framework: None | StrictStr = None
-    logger_name: None | StrictStr = None
-
-    @field_validator("command")
-    def validate_command(cls, value: str) -> str:
-        if value.lower() not in {"bun", "deno", "npm", "pnpm", "yarn"}:
-            raise ValueError(
-                'The "command" value must be one of "bun", "deno", "npm", "pnpm", or "yarn".'
-            )
-        return value.lower()
-
-    @field_validator("framework")
-    def validate_framework(cls, value: str) -> str:
-        if value.lower() not in {"angular", "react", "svelte", "vue"}:
-            raise ValueError(
-                'The "framework" value must be one of "angular", "react", "svelte", or "vue".'
-            )
-        return value
-
-    @field_validator("logger_name")
-    def validate_logger_name(cls, value: str) -> str:
-        if value.lower() not in {"granian", "gunicorn", "rzl", "uvicorn"}:
-            raise ValueError(
-                'The "logger_name" value must be one of "granian", "gunicorn", "rzl", or "uvicorn".'
-            )
-        return value
+    command: Literal["bun", "deno", "npm", "pnpm", "yarn"] | None = None
+    framework: Literal["angular", "react", "svelte", "vue"] | None = None
+    logger_name: Annotated[
+        Literal["_granian", "gunicorn", "uvicorn"] | None,
+        BeforeValidator(validate_logger_name),
+    ] = None
 
 
 __all__: tuple[str, ...] = ("LoadConfig",)
