@@ -11,14 +11,17 @@
 # *************************************************************
 
 ### Standard library ###
-from typing import Any, Mapping
+from typing import Any, Mapping, ParamSpec
+from typing_extensions import override
 
 ### Third-party packages ###
 from click import Context, Option, UsageError
 
+P = ParamSpec("P")
+
 
 class MutexOption(Option):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: P.args, **kwargs: P.kwargs) -> None:
         self.alternatives: list = kwargs.pop("alternatives")
         assert self.alternatives, "'alternatives' parameter required."
         kwargs["help"] = (
@@ -27,7 +30,8 @@ class MutexOption(Option):
         ).strip()
         super(MutexOption, self).__init__(*args, **kwargs)
 
-    def handle_parse_result(  # type: ignore[override]
+    @override
+    def handle_parse_result(
         self, ctx: Context, opts: Mapping[str, Any], args: list[str]
     ) -> tuple[Any, list[str]]:
         current_opt: bool = self.name in opts
