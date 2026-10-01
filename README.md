@@ -193,10 +193,6 @@ Alternatively, run the following command on your terminal to do so:
 uv sync --dev
 ```
 
-- **mypy** Optional static typing for Python
-  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/python/mypy)
-  [![PyPI](https://img.shields.io/badge/-PyPI:%20mypy-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/mypy)
-  [![Docs](https://img.shields.io/readthedocs/mypy?logo=readthedocs)](https://mypy.readthedocs.io/en/stable/) 
 - **ruff** An extremely fast Python linter and code formatter, written in Rust.
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/astral-sh/ruff)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20ruff-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/ruff)
