@@ -12,7 +12,7 @@
 
 ### Standard library ###
 from pathlib import Path
-from typing import Any, Literal
+from typing import Literal
 
 ### Third-party packages ###
 from pydantic import TypeAdapter
@@ -23,16 +23,20 @@ file_path: Path = Path(__file__).resolve()
 
 SCRIPT: list[str]
 with open(str(file_path).replace("configs.py", "script.yaml"), "rb") as stream:
-    script: dict[str, Any] | None = load(stream, Loader=Loader)
+    script: dict[Literal["serve"], list[str]] | None = load(stream, Loader=Loader)
     if script:
         SCRIPT = TypeAdapter(list[str]).validate_python(script["serve"])
 
+
 TEMPLATES: dict[Literal["base", "react", "svelte", "vue"], dict[int, str]]
 with open(str(file_path).replace("configs.py", "templates.yaml"), "rb") as stream:
-    templates: dict[str, Any] | None = load(stream, Loader=Loader)
+    templates: dict[Literal["templates"], dict[int, str]] | None = load(
+        stream, Loader=Loader
+    )
     if templates:
         TEMPLATES = TypeAdapter(
             dict[Literal["base", "react", "svelte", "vue"], dict[int, str]]
         ).validate_python(templates["templates"])
+
 
 __all__: tuple[str, ...] = ("SCRIPT", "TEMPLATES")
