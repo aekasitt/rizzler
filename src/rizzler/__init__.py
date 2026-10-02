@@ -2,7 +2,7 @@
 # coding:utf-8
 # Copyright (C) 2024-2026, All rights reserved.
 # FILENAME:    ~~/src/rizzler/__init__.py
-# VERSION:     0.2.0
+# VERSION:     0.2.1
 # CREATED:     2024-06-05 01:43 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>
 # DESCRIPTION: https://www.w3docs.com/snippets/python/what-is-init-py-for.html
@@ -31,4 +31,6 @@ cli.add_command(initiate, "initiate")
 
 
 __all__: tuple[str, ...] = ("RizzleTemplates", "Rizzler", "cli")
-__version__: str = "0.2.0"
+__name__: str = "rizzler"
+__package__: str = "rizzler"
+__version__: str = "0.2.1"
