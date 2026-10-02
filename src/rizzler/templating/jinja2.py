@@ -10,6 +10,10 @@
 # HISTORY:
 # *************************************************************
 
+### Standard library ###
+from os import PathLike
+from typing import Sequence
+
 ### Third-party packages ###
 from markupsafe import Markup
 from starlette.templating import Jinja2Templates
@@ -19,7 +23,10 @@ from rizzler import Rizzler
 
 
 class RizzleTemplates(Jinja2Templates):
-    def __init__(self, directory: str) -> None:
+    def __init__(
+        self,
+        directory: str | PathLike[str] | Sequence[str | PathLike[str]] | None = None,
+    ) -> None:
         super().__init__(directory=directory)
         self.env.globals["vite_hmr_client"] = self.vite_hmr_client
         self.env.globals["vite_asset"] = self.vite_asset
