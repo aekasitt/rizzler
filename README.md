@@ -132,6 +132,16 @@ Now you have a production front-end to go with your `FastAPI` application when y
 There will probably be bugs when it comes to relative versus absolute paths in the future.
 But this is good enough for many prototyping use-case and with a bit of tinkering, can replace 
 
+## Change-logs
+
+* **0.1.9** Drop Python 3.9 support; Modernize syntax removing `typing.List`, `typing.Optional`
+  and `typing.Tuple`
+* **0.2.0** Add `granian` as `logger_name` option
+* **0.2.1** Allow swappable templating engine via extras; `rizzler[jinja2]` | `rizzler[minijinja]`
+
+  :construction: **BREAKING CHANGE**
+  0.2.0 -> 0.2.1: Templating engine is not available by default, pending [PEP-771](https://peps.python.org/pep-0771/)
+
 ## Dependencies and Disclosures
 
 This library relies on the following Python dependencies.
