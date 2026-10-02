@@ -13,6 +13,7 @@
 ### Standard packages ###
 from collections.abc import Callable, Mapping, Sequence
 from os import PathLike
+from textwrap import dedent
 from typing import Any
 from warnings import warn
 
@@ -160,30 +161,36 @@ class RizzleTemplates:
     @classmethod
     def vite_asset(cls, path: str) -> Markup:
         return Markup(
-            """
-            <script async defer type="module" src="http://localhost:5173/%s"></script>
-            """
-            % path
+            dedent(
+                """
+                <script async defer type="module" src="http://localhost:5173/%s"></script>
+                """
+                % path
+            )
         )
 
     @classmethod
     def vite_hmr_client(cls) -> Markup:
         tags = [
-            """
-            <script type="module" src="http://localhost:5173/@vite/client"></script>
-            """
+            dedent(
+                """
+                <script type="module" src="http://localhost:5173/@vite/client"></script>
+                """
+            )
         ]
         if Rizzler._framework == "react":
             tags.append(
-                """
-                <script type="module">
-                    import RefreshRuntime from 'http://localhost:5173/@react-refresh'
-                    RefreshRuntime.injectIntoGlobalHook(window)
-                    window.$RefreshReg$ = () => {{}}
-                    window.$RefreshSig$ = () => (type) => type
-                    window.__vite_plugin_react_preamble_installed__=true
-                </script>
-                """
+                dedent(
+                    """
+                    <script type="module">
+                        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+                        RefreshRuntime.injectIntoGlobalHook(window)
+                        window.$RefreshReg$ = () => {{}}
+                        window.$RefreshSig$ = () => (type) => type
+                        window.__vite_plugin_react_preamble_installed__=true
+                    </script>
+                    """
+                )
             )
         return Markup("\n".join(tags))
 

@@ -12,6 +12,7 @@
 
 ### Standard library ###
 from os import PathLike
+from textwrap import dedent
 from typing import Sequence
 
 ### Third-party packages ###
@@ -35,10 +36,12 @@ class RizzleTemplates(Jinja2Templates):
     def vite_asset(cls, path: str) -> Markup:
         tags: list[str] = []
         tags.append(
-            """
-            <script async defer type="module" src="http://localhost:5173/%s"></script>
-            """
-            % path
+            dedent(
+                """
+                <script async defer type="module" src="http://localhost:5173/%s"></script>
+                """
+                % path
+            )
         )
         return Markup("\n".join(tags))
 
@@ -47,21 +50,25 @@ class RizzleTemplates(Jinja2Templates):
         """ """
         tags: list[str] = []
         tags.append(
-            """
-            <script type="module" src="http://localhost:5173/@vite/client"></script>
-            """
+            dedent(
+                """
+                <script type="module" src="http://localhost:5173/@vite/client"></script>
+                """
+            )
         )
         if Rizzler._framework == "react":
             tags.append(
-                """
-                <script type="module">
-                    import RefreshRuntime from 'http://localhost:5173/@react-refresh'
-                    RefreshRuntime.injectIntoGlobalHook(window)
-                    window.$RefreshReg$ = () => {{}}
-                    window.$RefreshSig$ = () => (type) => type
-                    window.__vite_plugin_react_preamble_installed__=true
-                </script>
-                """
+                dedent(
+                    """
+                    <script type="module">
+                        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+                        RefreshRuntime.injectIntoGlobalHook(window)
+                        window.$RefreshReg$ = () => {{}}
+                        window.$RefreshSig$ = () => (type) => type
+                        window.__vite_plugin_react_preamble_installed__=true
+                    </script>
+                    """
+                )
             )
         return Markup("\n".join(tags))
 
