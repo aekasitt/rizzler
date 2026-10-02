@@ -4,7 +4,12 @@ requires = ['hatchling']
 
 
 [dependency-groups]
-dev = ['pytest>=9.1.1', 'ruff >=0.4.7', 'types-pyyaml >=6.0.12.20240311']
+dev = [
+  'pytest>=9.1.1',
+  'pytest-modern>=0.7.5',
+  'ruff >=0.4.7',
+  'types-pyyaml >=6.0.12.20240311',
+]
 examples = ['fastapi >=0.114.0,<0.115.0', 'uvicorn >=0.30.1']
 
 
@@ -89,6 +94,16 @@ packages = ['src/rizzler']
 
 [tool.hatch.build.targets.sdist]
 exclude = ['/src/minijinja', '/src/starlette']
+
+
+[tool.pytest.ini_options]
+addopts = [
+  '--capture=sys',    # capture sysout messages
+  '--strict-markers',
+  '--tb=short',       # traceback
+]
+python_files = '*.py'
+testpaths = ['tests']
 
 
 [tool.ruff]
