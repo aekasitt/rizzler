@@ -121,7 +121,7 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 templates = Jinja2Templates(directory="dist")
 
-app.mount("/public", StaticFiles(directory="dist"), name="dist")
+app.mount("/", StaticFiles(directory="dist"), name="dist")
 
 @app.get("/{catchall:path}", response_class=HTMLResponse)
 async def index(catchall: str, request: Request) -> HTMLResponse:
