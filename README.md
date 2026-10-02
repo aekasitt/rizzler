@@ -54,8 +54,8 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None, None]:
 app: FastAPI = FastAPI(lifespan=lifespan)
 templates: RizzleTemplates = RizzleTemplates(directory="templates")
 
-@app.get("/", response_class=HTMLResponse)
-async def index(request: Request) -> HTMLResponse:
+@app.get("/{catchall:path}", response_class=HTMLResponse)
+async def index(catchall: str, request: Request) -> HTMLResponse:
     return templates.TemplateResponse(request, "index.html")
 ```
 
@@ -121,11 +121,11 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 templates = Jinja2Templates(directory="dist")
 
-@app.get("/", response_class=HTMLResponse)
-def index(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("index.html", {"request": request})
+app.mount("/public", StaticFiles(directory="dist"), name="dist")
 
-app.mount("/", StaticFiles(directory="dist"), name="dist")
+@app.get("/{catchall:path}", response_class=HTMLResponse)
+async def index(catchall: str, request: Request) -> HTMLResponse:
+    return templates.TemplateResponse(request, "index.html")
 ```
 
 Now you have a production front-end to go with your `FastAPI` application when you need.
