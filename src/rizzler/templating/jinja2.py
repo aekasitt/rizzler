@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.10
 # coding:utf-8
 # Copyright (C) 2024-2026, All rights reserved.
-# FILENAME:    ~~/src/rizzler/templating/rizzle_template.py
+# FILENAME:    ~~/src/rizzler/templating/jinja2.py
 # VERSION:     0.2.0
 # CREATED:     2024-06-07 01:39 +0700
 # AUTHOR:      Sitt Guruvanich <aekazitt+github@gmail.com>

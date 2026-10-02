@@ -13,11 +13,17 @@
 
 ## Installation
 
-Install using pip
+Install with the recommended [Jinja2](https://jinja.palletsprojects.com/en/stable/) engine:
 
 ```sh
-$ pip install rizzler
-> ...
+pip install "rizzler[jinja2]"
+```
+
+Or use [MiniJinja](https://github.com/mitsuhiko/minijinja) engine
+powered by [Rust](https://rust-lang.com) 🦀:
+
+```sh
+pip install "rizzler[minijinja]"
 ```
 
 ## Usage
@@ -50,13 +56,14 @@ templates: RizzleTemplates = RizzleTemplates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request, "index.html")
 ```
 
 ### Templating
 
-`RizzleTemplates` is an extension on top of `Jinja2Templates` class found under [starlette](starlette.io)
-However, has two overriding methods that must be placed inside the template HTML-file as such:
+`RizzleTemplates` supports Jinja2 and MiniJinja. MiniJinja is selected when it is
+installed; otherwise, the Jinja2 backend is used. Both backends expose two Vite
+helpers that can be placed in an HTML template as follows:
 
 ```html
 <!DOCTYPE html>
@@ -137,6 +144,9 @@ This library relies on the following Python dependencies.
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pallets/jinja)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20jinja2-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/jinja2)
   [![Docs](https://img.shields.io/badge/Sphinx-0A507A?logo=sphinx&logoColor=white)](https://jinja.palletsprojects.com/en/3.1.x)
+- **minijinja** - A Jinja-compatible template engine implemented in Rust
+  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/mitsuhiko/minijinja)
+  [![PyPI](https://img.shields.io/badge/-PyPI:%20minijinja-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/minijinja)
 - **markupsafe** - Safely add untrusted strings to HTML/XML markup
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pallets/markupsafe)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20markupsafe-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/markupsafe)
@@ -172,12 +182,9 @@ This library relies on the following Python dependencies.
 
 ### Prerequisites
 
-I recommend using `pyenv` and `uv` as the preferred tools to managing this project.
+I recommend using `uv` as the preferred tool to managing dependencies and virtual environment
+in your development workflow.
 
-- **pyenv**  - Simple Python version management 
-  [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/pyenv/pyenv)
-  [![PyPI](https://img.shields.io/badge/-PyPI:%20pyenv-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/pyenv)
-  [![OpenCollective](https://img.shields.io/badge/-OpenCollective:%20pyenv-7FADF2?logo=opencollective&logoColor=white)](https://opencollective.com/pyenv)
 - **uv** - An extremely fast Python package and project manager, written in Rust.
   [![GitHub](https://img.shields.io/badge/GitHub-2B3137?logo=github&logoColor=white)](https://github.com/astral-sh/uv)
   [![PyPI](https://img.shields.io/badge/-PyPI:%20uv-3775A9?logo=pypi&logoColor=white)](https://pypi.org/project/uv)
@@ -202,6 +209,8 @@ uv sync --dev
 
 * [fastapi-vite](https://github.com/cofin/fastapi-vite)
 * [django-vite](https://github.com/MrBin99/django-vite)
+* [MiniJinja: Learnings from Building a Template Engine in Rust](https://lucumr.pocoo.org/2024/8/27/minijinja/)
+  by [Armin Ronacher](https://lucumr.pocoo.org) [🐱🐙: @mitsuhiko](https://github.com/mitsuhiko)
 
 ## License
 

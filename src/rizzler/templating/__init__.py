@@ -11,6 +11,33 @@
 # *************************************************************
 
 ### Local modules ###
-from rizzler.templating.rizzle_templates import RizzleTemplates
+from rizzler.exceptions import MissingTemplateBackendError
+
+try:
+    import minijinja
+except ModuleNotFoundError as error:
+    if error.name != "minijinja":
+        raise
+
+    try:
+        import jinja2
+        import starlette.templating
+    except ModuleNotFoundError as error:
+        if error.name not in {"jinja2", "starlette", "starlette.templating"}:
+            raise
+
+        class RizzleTemplates:
+            def __init__(self, *args: object, **kwargs: object) -> None:
+                raise MissingTemplateBackendError(
+                    "RizzleTemplates requires a template backend. "
+                    "Install the recommended backend with `pip install "
+                    '"rizzler[jinja2]"`, or use MiniJinja with `pip install '
+                    '"rizzler[minijinja]"`.'
+                ) from None
+    else:
+        from rizzler.templating.jinja2 import RizzleTemplates
+else:
+    from rizzler.templating.minijinja import RizzleTemplates
+
 
 __all__: tuple[str, ...] = ("RizzleTemplates",)
