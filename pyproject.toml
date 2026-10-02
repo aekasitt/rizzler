@@ -4,7 +4,7 @@ requires = ['hatchling']
 
 
 [dependency-groups]
-dev = ['ruff >=0.4.7', 'types-pyyaml >=6.0.12.20240311']
+dev = ['pytest>=9.1.1', 'ruff >=0.4.7', 'types-pyyaml >=6.0.12.20240311']
 examples = ['fastapi >=0.114.0,<0.115.0', 'uvicorn >=0.30.1']
 
 
