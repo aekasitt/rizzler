@@ -304,6 +304,18 @@ wheels = [
 ]
 
 [[package]]
+name = "pytest-mock"
+version = "3.16.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pytest" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7a/7f/6ed29931d5c8cd396e7c0a55412e6cc88020373365c8685985dea53d26d7/pytest_mock-3.16.0.tar.gz", hash = "sha256:5a8395528b8f498205f3718f575228d0edaed7425fff638f87d1a6c3e0383636", size = 35362, upload-time = "2026-09-27T14:57:55.46Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/db/5b/b83a9bf1a3b4ec222f9fa083147ff6816245223da0ab92370e7e056f113f/pytest_mock-3.16.0-py3-none-any.whl", hash = "sha256:007cfeb257801d88d9c0b2a7b5a15a15e73b71968dfd72e7bf8c4a2f8393aec8", size = 10016, upload-time = "2026-09-27T14:57:54.283Z" },
+]
+
+[[package]]
 name = "pytest-modern"
 version = "0.7.5"
 source = { registry = "https://pypi.org/simple" }
@@ -402,6 +414,7 @@ minijinja = [
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
+    { name = "pytest-mock" },
     { name = "pytest-modern" },
     { name = "ruff" },
     { name = "types-pyyaml" },
@@ -431,6 +444,7 @@ provides-extras = ["jinja2", "minijinja"]
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pytest-mock", specifier = ">=3.16.0" },
     { name = "pytest-modern", specifier = ">=0.7.5" },
     { name = "ruff", specifier = ">=0.4.7" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20240311" },

@@ -10,40 +10,29 @@
 # HISTORY:
 # *************************************************************
 
-### Standard library ###
-from subprocess import run
-from sys import executable
-from textwrap import dedent
+### Standard packages ###
+from importlib import import_module, reload
+
+### Third-party packages ###
+from pytest import raises
+from pytest_mock import MockerFixture
+
+### Local modules ###
+from rizzler.exceptions import MissingTemplateBackendError
 
 
-def test_missing_template_backends_raise_installation_error() -> None:
-    script = dedent(
-        """
-        import builtins
+def test_missing_template_backends(mocker: MockerFixture) -> None:
+    mocker.patch.dict("sys.modules", {"jinja2": None, "minijinja": None})
+    try:
+        reload(import_module("rizzler.templating"))
+        ### Local modules ###
+        from rizzler.templating import RizzleTemplates
 
-        real_import = builtins.__import__
-
-        def import_without_template_backends(name, *args, **kwargs):
-            if name in {"jinja2", "minijinja"}:
-                error = ModuleNotFoundError(f"No module named '{name}'")
-                error.name = name
-                raise error
-            return real_import(name, *args, **kwargs)
-
-        builtins.__import__ = import_without_template_backends
-
-        from rizzler import RizzleTemplates
-        from rizzler.exceptions import MissingTemplateBackendError
-
-        try:
+        with raises(MissingTemplateBackendError) as exc_info:
             RizzleTemplates(directory="templates")
-        except MissingTemplateBackendError as error:
-            message = str(error)
-            assert "rizzler[jinja2]" in message
-            assert "rizzler[minijinja]" in message
-        else:
-            raise AssertionError("MissingTemplateBackendError was not raised")
-        """
-    )
-
-    run([executable, "-c", script], check=True)
+        message = str(exc_info.value)
+        assert "rizzler[jinja2]" in message
+        assert "rizzler[minijinja]" in message
+    finally:
+        mocker.stopall()
+        reload(import_module("rizzler.templating"))
