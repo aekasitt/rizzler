@@ -23,16 +23,14 @@ from rizzler.exceptions import MissingTemplateBackendError
 
 def test_missing_template_backends(mocker: MockerFixture) -> None:
     mocker.patch.dict("sys.modules", {"jinja2": None, "minijinja": None})
-    try:
-        reload(import_module("rizzler.templating"))
-        ### Local modules ###
-        from rizzler.templating import RizzleTemplates
+    reload(import_module("rizzler.templating"))
+    from rizzler.templating import RizzleTemplates
 
-        with raises(MissingTemplateBackendError) as exc_info:
-            RizzleTemplates(directory="templates")
-        message = str(exc_info.value)
-        assert "rizzler[jinja2]" in message
-        assert "rizzler[minijinja]" in message
-    finally:
-        mocker.stopall()
-        reload(import_module("rizzler.templating"))
+    with raises(MissingTemplateBackendError) as exc_info:
+        RizzleTemplates(directory="templates")
+    message = str(exc_info.value)
+    assert "rizzler[jinja2]" in message
+    assert "rizzler[minijinja]" in message
+
+    mocker.stopall()
+    reload(import_module("rizzler.templating"))
